@@ -263,10 +263,6 @@ MonoBehaviour:
   EquipmentPrefab: {fileID: 1646900138202698036, guid: 12884077b96be474fb9b7a87a7a3fd47,
     type: 3}
   equipmentPrefabs: []
-  myName: Yee Hee Hee!
-  myImage: {fileID: 0}
-  newCollider: {fileID: 0}
-  myPosition: {x: 0, y: 0}
 --- !u!1 &1543511756
 GameObject:
   m_ObjectHideFlags: 0
