@@ -25,8 +25,8 @@ public class OnClickDelegate : MonoBehaviour
 
     public void BroadcastMessage()
     {
-        Debug.Log("hi MyFunction");
-        // What does this actually do?
+        // Debug.Log("hi MyFunction");
+        // What does this actually do? Nothing, currently
         // I think I want it to send a message to other controller scripts
     }
 }

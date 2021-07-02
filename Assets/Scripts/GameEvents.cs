@@ -10,11 +10,9 @@ public class GameEvents : MonoBehaviour
     // public Vector2 myPosition;
     // public EquipmentClass myEquipment;
 
-    public GameObject EquipmentPrefab; // Does this reference the actual equipmentPrefab object?
+    public GameObject EquipmentPrefab; // Does this reference the actual equipmentPrefab object? And does this create a dependency?
     private EquipmentClass equipmentClass;
-    // private Component equipmentClassScript; // How do I reference a script component?
-
-    // EquipmentClass myEquipment = new EquipmentClass(string Name, Sprite Image, Component NewCollider);
+    // private SendMessageDelegate sendMessageDelegate; // Does this create a dependency?
 
     private void Awake()
     {
@@ -32,14 +30,8 @@ public class GameEvents : MonoBehaviour
         myEquipment.NewCollider = newCollider;
         myEquipment.InitialPosition = myPosition; */
 
-        Instantiate(EquipmentPrefab, transform.position, Quaternion.identity);
+        Instantiate(EquipmentPrefab, transform.position, Quaternion.identity); // A differnent class should probably handle this
         // Instantiate(EquipmentPrefab, transform.position, Quaternion.identity);
-
-        // (myEquipment)Instantiate(myEquipment, new Vector2(0, 0), Quaternion.identity);
-
-        // equipmentObject = (myEquipment)Instantiate(myEquipment, myPosition, Quaternion.identity); 
-
-        // Instantiate(myEquipment, new Vector2(0, 0), Quaternion.identity);
 
         // add to equipment factory (later)
     }
@@ -53,6 +45,9 @@ public class GameEvents : MonoBehaviour
     {
         OnClickDelegate.OnClicked -= MyFunction;
     }
+
+    public delegate void MessageEvent(); // Does this need to return some sort of object id?
+    public static event MessageEvent OnMessageSent; // This works but feels hacky?
 
     // Update is called once per frame
     void Update()
@@ -75,8 +70,10 @@ public class GameEvents : MonoBehaviour
     public void MyFunction()
     {
         Debug.Log("Hi MyFunction");
-        Debug.Log(this.equipmentClass.Name); // The 'this' is wishful thinking probably 
-        // OnClickDelegate.BroadcastMessage();
-        // Alert other Controllers
+        Debug.Log(this.equipmentClass.Name); // The 'this' is probably wishful thinking
+
+        // Triggers Message Event which alerts Click Menu Controller
+        OnMessageSent?.Invoke();
+        // sendMessageDelegate.SendBroadcast(); 
     }
 }

@@ -8,12 +8,12 @@ public class ClickMenuController : MonoBehaviour
 
     private void OnEnable()
     {
-        // subscribe to GameEvent Function
+        GameEvents.OnMessageSent += ShowClickMenu;
     }
 
     private void OnDisable()
     {
-        // unsubscribe from GameEvent Function
+        GameEvents.OnMessageSent -= ShowClickMenu;
     }
     public void ShowClickMenu()
     {
