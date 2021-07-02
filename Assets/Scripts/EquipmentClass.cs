@@ -89,11 +89,14 @@ public class EquipmentClass : MonoBehaviour
         this.InitialPosition = InitialPosition;
     }
 
-    public delegate void ClickEvent(); // Does this need to return some sort of object id?
+    /* public delegate void ClickEvent(); // Does this need to return some sort of object id?
     public static event ClickEvent OnClicked; // This probably needs to be non-static if I want specific object instances to trigger an event?
 
     public void BroadcastMessage()
     {
         OnClicked?.Invoke();
-    }
+        Debug.Log("hi MyFunction");
+        // What does this actually do?
+        // I think I want it to send a message to other controller scripts
+    } */ // Placed inside OnClickDelegate Class
 }

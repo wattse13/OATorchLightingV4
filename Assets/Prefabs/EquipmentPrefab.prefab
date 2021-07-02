@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -1845853065867352049}
   - component: {fileID: 4402780459269232870}
   - component: {fileID: -4864365325242434908}
+  - component: {fileID: 3095102104865533133}
   m_Layer: 0
   m_Name: EquipmentPrefab
   m_TagString: Untagged
@@ -125,3 +126,15 @@ MonoBehaviour:
   _image: {fileID: 0}
   _position: {x: 0, y: 0}
   _newCollider: {fileID: -1845853065867352049}
+--- !u!114 &3095102104865533133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646900138202698036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b21ca0f872eb2d54db8fe2125fc75bea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

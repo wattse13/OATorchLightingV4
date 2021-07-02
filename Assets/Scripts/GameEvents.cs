@@ -11,7 +11,7 @@ public class GameEvents : MonoBehaviour
     // public EquipmentClass myEquipment;
 
     public GameObject EquipmentPrefab; // Does this reference the actual equipmentPrefab object?
-    EquipmentClass equipmentClass;
+    private EquipmentClass equipmentClass;
     // private Component equipmentClassScript; // How do I reference a script component?
 
     // EquipmentClass myEquipment = new EquipmentClass(string Name, Sprite Image, Component NewCollider);
@@ -19,7 +19,6 @@ public class GameEvents : MonoBehaviour
     private void Awake()
     {
         equipmentClass = EquipmentPrefab.GetComponent<EquipmentClass>();
-        
     }
 
     void Start()
@@ -47,18 +46,18 @@ public class GameEvents : MonoBehaviour
 
     private void OnEnable()
     {
-        EquipmentClass.OnClicked += MyFunction;
+        OnClickDelegate.OnClicked += MyFunction;
     }
 
     private void OnDisable()
     {
-        EquipmentClass.OnClicked -= MyFunction;
+        OnClickDelegate.OnClicked -= MyFunction;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        /* if (Input.GetMouseButtonDown(0))
         {
             Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero);
@@ -67,23 +66,17 @@ public class GameEvents : MonoBehaviour
             {
                 // EquipmentPrefab = this.EquipmentPrefab;
                 Debug.Log("hi click input");
-                Debug.Log(this.equipmentClass.Name);
-                MyFunction();
+                // Debug.Log(this.equipmentClass.Name); // The 'this' is wishful thinking probably 
+                // MyFunction();
             }
-        }
-    }
+        } */
+    } // Not currently needed
 
     public void MyFunction()
     {
         Debug.Log("Hi MyFunction");
-
-        // Should coordinate which controller is activated after recieving message?
-        // To do this, does it need a reference to each object instance or the object class?
-
-        // EquipmentClass myEquipment = new EquipmentClass(myName, myImage, newCollider); // this is probably bad coding
-        // myEquipment.Name = myName;
-        // myEquipment.Image = myImage;
-        // myEquipment.NewCollider = newCollider;
-        // myEquipment.BroadcastMessage(); // This may cause Unity to crash
+        Debug.Log(this.equipmentClass.Name); // The 'this' is wishful thinking probably 
+        // OnClickDelegate.BroadcastMessage();
+        // Alert other Controllers
     }
 }
