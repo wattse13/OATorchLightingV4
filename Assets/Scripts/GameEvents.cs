@@ -61,7 +61,7 @@ public class GameEvents : MonoBehaviour
     public void MyFunction()
     {
         Debug.Log("Hi MyFunction");
-        Debug.Log(equipmentFactory.equipmentPrefabs[0].equipmentPrefab.Name); // Currently unable to access list object names
+        Debug.Log(equipmentFactory.equipmentPrefabs[0].name); // Changing this to Name as is in the EquipmentClass throws an error
 
         // Triggers Message Event which alerts Click Menu Controller
         OnMessageSent?.Invoke();

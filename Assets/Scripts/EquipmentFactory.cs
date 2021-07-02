@@ -8,6 +8,7 @@ public class EquipmentFactory : MonoBehaviour // Should this inherit from Equipm
     // private EquipmentClass equipmentClass;
     public List<GameObject> equipmentPrefabs; // Needs to be public or line 26 returns Null Reference Exemption
 
+    
     /* public string myName;
     public Sprite myImage;
     public Component newCollider;
