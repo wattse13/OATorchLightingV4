@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+// Attatched to the EquipmentPrefab GameObject prefab
+// Inherits from MonoBehaviour so that it can be attatched to GameObjects
+// I don't know if that's a good idea or not.
 public class EquipmentClass : MonoBehaviour 
 {
     [SerializeField]

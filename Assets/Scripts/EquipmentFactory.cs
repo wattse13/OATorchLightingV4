@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Attatched to GameEvents GameObject
+// References the EquipmentPrefab GameObject prefab
+// Ideally, this would be used to dynamically add equipment needed for the scene, and then add the equipment to a List
 public class EquipmentFactory : MonoBehaviour // Should this inherit from EquipmentClass? Trying to do so gives me a constructor error
 {
     public GameObject EquipmentPrefab; // Does this reference the actual equipmentPrefab object? And does this create a dependency?
@@ -20,7 +23,8 @@ public class EquipmentFactory : MonoBehaviour // Should this inherit from Equipm
 
         // equipmentClass = EquipmentPrefab.GetComponent<EquipmentClass>();
     }
-
+    
+    // There is something wrong with how I am instantiating and then adding objects to the list
     void Start()
     {
         GameObject newEquipmentPrefab = (GameObject)Instantiate(EquipmentPrefab, transform.position, Quaternion.identity);

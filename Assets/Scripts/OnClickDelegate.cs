@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Attatched to the EquipmentPrefab GameObject prefab
+// Was previously a part of the EquipmentClass
 public class OnClickDelegate : MonoBehaviour
 {
     public delegate void ClickEvent(); // Does this need to return some sort of object id?
     public static event ClickEvent OnClicked;
 
 
-    // Update is called once per frame
+    // If an object with a collider is clicked on, the event OnClicked is invoked
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
