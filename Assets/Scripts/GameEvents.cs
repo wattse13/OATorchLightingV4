@@ -10,30 +10,21 @@ public class GameEvents : MonoBehaviour
     // public Vector2 myPosition;
     // public EquipmentClass myEquipment;
 
-    public GameObject EquipmentPrefab; // Does this reference the actual equipmentPrefab object? And does this create a dependency?
-    private EquipmentClass equipmentClass;
+    // public GameObject EquipmentPrefab; // Does this reference the actual equipmentPrefab object? And does this create a dependency?
+    // private EquipmentClass equipmentClass;
     // private SendMessageDelegate sendMessageDelegate; // Does this create a dependency?
+
+    private EquipmentFactory equipmentFactory; // Does this create a dependency?
 
     private void Awake()
     {
-        equipmentClass = EquipmentPrefab.GetComponent<EquipmentClass>();
+        // equipmentClass = GetComponent<EquipmentClass>();
+        equipmentFactory = GetComponent<EquipmentFactory>();
     }
 
     void Start()
     {
         
-        /* EquipmentClass myEquipment = new EquipmentClass(myName, myImage, newCollider, myPosition);
-        //myEquipment(myName, myImage, newCollider);
-
-        myEquipment.Name = myName;
-        myEquipment.Image = myImage;
-        myEquipment.NewCollider = newCollider;
-        myEquipment.InitialPosition = myPosition; */
-
-        Instantiate(EquipmentPrefab, transform.position, Quaternion.identity); // A differnent class should probably handle this
-        // Instantiate(EquipmentPrefab, transform.position, Quaternion.identity);
-
-        // add to equipment factory (later)
     }
 
     private void OnEnable()
@@ -70,7 +61,7 @@ public class GameEvents : MonoBehaviour
     public void MyFunction()
     {
         Debug.Log("Hi MyFunction");
-        Debug.Log(this.equipmentClass.Name); // The 'this' is probably wishful thinking
+        Debug.Log(equipmentFactory.equipmentPrefabs[0].equipmentPrefab.Name); // Currently unable to access list object names
 
         // Triggers Message Event which alerts Click Menu Controller
         OnMessageSent?.Invoke();
