@@ -21,16 +21,16 @@ public class GameEvents : MonoBehaviour
 
     private void OnEnable()
     {
-        OnClickDelegate.OnClicked += MyFunction;
+        OnClickDelegate.OnClicked += WhoCalled;
     }
 
     private void OnDisable()
     {
-        OnClickDelegate.OnClicked -= MyFunction;
+        OnClickDelegate.OnClicked -= WhoCalled;
     }
 
     // ClickMenuController is currently subscribed to this delegate event
-    public delegate void MessageEvent(); // Does this need to return some sort of object id?
+    public delegate void MessageEvent(GameObject e);
     public static event MessageEvent OnMessageSent; // This works but feels hacky?
 
     // Update is called once per frame
@@ -51,16 +51,15 @@ public class GameEvents : MonoBehaviour
         } */
     } // Not currently needed
 
-    // Currently exists as a test method
     // When GameEvents recieves a message from OnClickDelegate, it triggers its own delegate event, OnMessageSent
-    public void MyFunction()
+    // Passes clicked on GameObject as reference
+    public void WhoCalled(GameObject myClickedPrefab)
     {
         Debug.Log("Hi MyFunction");
-        Debug.Log(equipmentFactory.equipmentPrefabs[0].name); // Changing this to Name as is in the EquipmentClass throws an error
+        // Debug.Log(equipmentFactory.equipmentPrefabs[0].gameObject.name); // Changing this to Name as is in the EquipmentClass throws an error
 
         // Triggers Message Event which alerts Click Menu Controller
-        OnMessageSent?.Invoke();
-        // sendMessageDelegate.SendBroadcast(); 
+        OnMessageSent?.Invoke(myClickedPrefab);
     }
 
     #region Code Graveyard

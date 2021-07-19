@@ -8,6 +8,7 @@ using UnityEngine;
 public class EquipmentFactory : MonoBehaviour // Should this inherit from EquipmentClass? Trying to do so gives me a constructor error
 {
     public GameObject EquipmentPrefab; // Does this reference the actual equipmentPrefab object? And does this create a dependency?
+                                       // I have also assigned the actual equipment prefab in editor
     // private EquipmentClass equipmentClass;
     public List<GameObject> equipmentPrefabs; // Needs to be public or line 26 returns Null Reference Exemption
 
@@ -19,7 +20,7 @@ public class EquipmentFactory : MonoBehaviour // Should this inherit from Equipm
 
     private void Awake()
     {
-        List<GameObject> equipmentPrefabs = new List<GameObject>(); // Should this be of type GameObject?
+        List<GameObject> equipmentPrefabs = new List<GameObject>(); // Should this be of type GameObject or the EquipmentPrefab?
 
         // equipmentClass = EquipmentPrefab.GetComponent<EquipmentClass>();
     }
@@ -27,8 +28,10 @@ public class EquipmentFactory : MonoBehaviour // Should this inherit from Equipm
     // There is something wrong with how I am instantiating and then adding objects to the list
     void Start()
     {
+        Debug.Log(equipmentPrefabs.Count);
+
         GameObject newEquipmentPrefab = (GameObject)Instantiate(EquipmentPrefab, transform.position, Quaternion.identity);
-        equipmentPrefabs.Add(newEquipmentPrefab);
+        equipmentPrefabs.Add(newEquipmentPrefab); // I'm adding a newEquipmentPrefab, but I'm unable to do anything with it in GameEvents script
 
         Debug.Log(equipmentPrefabs.Count);
         // equipmentPrefabs.Add(new EquipmentClass(myName, myImage, newCollider, myPosition)); // how do I access class properties here?

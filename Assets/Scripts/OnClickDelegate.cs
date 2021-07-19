@@ -6,7 +6,7 @@ using UnityEngine;
 // Was previously a part of the EquipmentClass
 public class OnClickDelegate : MonoBehaviour
 {
-    public delegate void ClickEvent(); // Does this need to return some sort of object id?
+    public delegate void ClickEvent(GameObject e); // Does this need to return some sort of object id?
     public static event ClickEvent OnClicked;
 
 
@@ -20,7 +20,7 @@ public class OnClickDelegate : MonoBehaviour
 
             if (hit.collider != null)
             {
-                OnClicked?.Invoke();
+                OnClicked?.Invoke(this.gameObject);
             }
         }
     }
