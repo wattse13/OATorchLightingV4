@@ -35,10 +35,6 @@ public class ClickMenuController : MonoBehaviour
     public delegate void EquipActivateEvent(GameObject e);
     public static event EquipActivateEvent OnActiveStatusChanged;
 
-    private void Awake()
-    {
-        
-    }
     private void OnEnable()
     {
         GameEvents.OnMessageSent += ShowClickMenu;
