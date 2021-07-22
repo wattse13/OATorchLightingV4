@@ -9,6 +9,11 @@ public class OnClickDelegate : MonoBehaviour
     public delegate void ClickEvent(GameObject e);
     public static event ClickEvent OnClicked;
 
+    /* void OnMouseOver()
+    {
+        Debug.Log("Hi");
+        OnClicked?.Invoke(this.gameObject);
+    }*/ // Wishful Thinking
 
     // If an object with a collider is clicked on, the event OnClicked is invoked
     void Update()
