@@ -11,13 +11,14 @@ public class ClickMenuController : MonoBehaviour
 {
     private TMP_Text myTitle;
     private TMP_Text myText;
-    private Canvas clickMenuCanvas;
-    private Canvas inspectMenuCanvas;
-    private Canvas useMenuCanvas;
 
+    private GameObject clickMenu;
+    private GameObject inspectMenu;
+   
     public GameObject inspectButton;
     public GameObject useButton;
     public GameObject backButton;
+    public GameObject replaceButton;
     
     private void Awake()
     {
@@ -35,14 +36,16 @@ public class ClickMenuController : MonoBehaviour
 
     private void Start()
     {
-        myTitle = GameObject.Find("EquipmentName").GetComponent<TMP_Text>();
-        // myText = GameObject.Find("BodyText").GetComponent<TMP_Text>();
-        clickMenuCanvas = GameObject.Find("ClickMenu").GetComponent<Canvas>();
-        inspectMenuCanvas = GameObject.Find("InspectMenu").GetComponent<Canvas>();
-        clickMenuCanvas.enabled = false;
-        inspectMenuCanvas.enabled = false;
+        // Uses a lot of string checks which probably isn't great
+        clickMenu = GameObject.Find("ClickMenu");
+        inspectMenu = GameObject.Find("InspectMenu");
+        myTitle = GameObject.Find("EquipName").GetComponent<TMP_Text>(); // Makes changes only in Click Menu
+        myText = GameObject.Find("EquipDescription").GetComponent<TMP_Text>();
+        clickMenu.SetActive(false);
+        inspectMenu.SetActive(false);
     }
 
+    // This method is probably doing too many different things
     public void ShowClickMenu(GameObject myClickedPrefab)
     {
         // Show menu with equipment name and option to inspect or manipulate
@@ -50,18 +53,17 @@ public class ClickMenuController : MonoBehaviour
         if (myClickedPrefab.TryGetComponent(out EquipmentClass equipment))
         {
             Debug.Log("Clicked on equipment " + equipment.Name);
-            
-            // Should I set myClickedPrefab to a variable which can be used outside of this function?
 
-            clickMenuCanvas.enabled = true; // Need way to close click menu
+            clickMenu.SetActive(true); // Need way to close click menu and way to prevent re-clicking on object while inspect/use menu is open
             myTitle.text = equipment.Name;
+            myText.text = equipment.DescriptionUnsafe;
         }
     }
 
     public void OpenInspectMenu()
     {
         // Juice: Center object and blur out everything behind it
-        // clickMenuCanvas.enabled = false;
+        // clickMenu.enabled = false;
         // inspectMenuCanvas.enabled = true;
         // myText = equipment.DescriptionUnsafe; // out of scope?
     }
