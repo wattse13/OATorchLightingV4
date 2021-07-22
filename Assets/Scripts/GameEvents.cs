@@ -7,6 +7,7 @@ using UnityEngine;
 public class GameEvents : MonoBehaviour
 {
     private EquipmentFactory equipmentFactory; // Does this create a dependency?
+    // private EquipmentClass equipmentClass;
 
     private void Awake()
     {
@@ -55,11 +56,15 @@ public class GameEvents : MonoBehaviour
     // Passes clicked on GameObject as reference
     public void WhoCalled(GameObject myClickedPrefab)
     {
-        Debug.Log("Hi MyFunction");
+        // Debug.Log("Hi MyFunction");
+        // Debug.Log(myClickedPrefab.equipmentClass.Name);
         // Debug.Log(equipmentFactory.equipmentPrefabs[0].gameObject.name); // Changing this to Name as is in the EquipmentClass throws an error
 
         // Triggers Message Event which alerts Click Menu Controller
         OnMessageSent?.Invoke(myClickedPrefab);
+
+        /*if (myClickedPrefab.TryGetComponent(out EquipmentClass equipment))
+            OnMessageSent?.Invoke(myClickedPrefab); */
     }
 
     #region Code Graveyard

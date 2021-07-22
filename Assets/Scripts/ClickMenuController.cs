@@ -9,9 +9,20 @@ using UnityEngine;
 // After GameEvents recieves message from instantiated objects, it should send a message to different controllers
 public class ClickMenuController : MonoBehaviour
 {
+    private TMP_Text myTitle;
     private TMP_Text myText;
-    private Canvas myCanvas;
+    private Canvas clickMenuCanvas;
+    private Canvas inspectMenuCanvas;
+    private Canvas useMenuCanvas;
 
+    public GameObject inspectButton;
+    public GameObject useButton;
+    public GameObject backButton;
+    
+    private void Awake()
+    {
+        
+    }
     private void OnEnable()
     {
         GameEvents.OnMessageSent += ShowClickMenu;
@@ -24,19 +35,34 @@ public class ClickMenuController : MonoBehaviour
 
     private void Start()
     {
-        myText = GameObject.Find("EquipmentName").GetComponent<TMP_Text>();
-
-        myCanvas = GameObject.Find("ClickMenu").GetComponent<Canvas>();
-        myCanvas.enabled = false;
+        myTitle = GameObject.Find("EquipmentName").GetComponent<TMP_Text>();
+        // myText = GameObject.Find("BodyText").GetComponent<TMP_Text>();
+        clickMenuCanvas = GameObject.Find("ClickMenu").GetComponent<Canvas>();
+        inspectMenuCanvas = GameObject.Find("InspectMenu").GetComponent<Canvas>();
+        clickMenuCanvas.enabled = false;
+        inspectMenuCanvas.enabled = false;
     }
 
     public void ShowClickMenu(GameObject myClickedPrefab)
     {
         // Show menu with equipment name and option to inspect or manipulate
 
-        Debug.Log("Click Menu Here!");
-        Debug.Log(myClickedPrefab.name); // Can't figure out how to return specific object instance name
-        myCanvas.enabled = true; // Need way to close click menu
-        myText.text = myClickedPrefab.name;
+        if (myClickedPrefab.TryGetComponent(out EquipmentClass equipment))
+        {
+            Debug.Log("Clicked on equipment " + equipment.Name);
+            
+            // Should I set myClickedPrefab to a variable which can be used outside of this function?
+
+            clickMenuCanvas.enabled = true; // Need way to close click menu
+            myTitle.text = equipment.Name;
+        }
+    }
+
+    public void OpenInspectMenu()
+    {
+        // Juice: Center object and blur out everything behind it
+        // clickMenuCanvas.enabled = false;
+        // inspectMenuCanvas.enabled = true;
+        // myText = equipment.DescriptionUnsafe; // out of scope?
     }
 }

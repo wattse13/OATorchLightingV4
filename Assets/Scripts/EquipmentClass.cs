@@ -10,9 +10,15 @@ public class EquipmentClass : MonoBehaviour
     [SerializeField]
     private string _name;
     [SerializeField]
-    private Sprite _image;
+    private Sprite _safeImage;
+    [SerializeField]
+    private Sprite _unsafeImage;
     [SerializeField]
     private Vector2 _position;
+    [SerializeField]
+    private string _descriptionSafe;
+    [SerializeField]
+    private string _descriptionUnsafe;
     // private int _id;
     // private bool _isSafe;
     // private bool _isActive;
@@ -34,15 +40,27 @@ public class EquipmentClass : MonoBehaviour
         }
     }
 
-    public Sprite Image
+    public Sprite SafeImage
     {
         get
         {
-            return _image;
+            return _safeImage;
         }
         set
         {
-            _image = value;
+            _safeImage = value;
+        }
+    }
+
+    public Sprite UnsafeImage
+    {
+        get
+        {
+            return _unsafeImage;
+        }
+        set
+        {
+            _unsafeImage = value;
         }
     }
 
@@ -69,6 +87,30 @@ public class EquipmentClass : MonoBehaviour
             _position = value;
         }
     }
+
+    public string DescriptionSafe
+    {
+        get
+        {
+            return _descriptionSafe;
+        }
+        set
+        {
+            _descriptionSafe = value;
+        }
+    }
+
+    public string DescriptionUnsafe
+    {
+        get
+        {
+            return _descriptionUnsafe;
+        }
+        set
+        {
+            _descriptionUnsafe = value;
+        }
+    }
     #endregion
 
     /* public int Id
@@ -83,13 +125,13 @@ public class EquipmentClass : MonoBehaviour
         }
     } */
 
-    public EquipmentClass(string Name, Sprite Image, Component NewCollider, Vector2 InitialPosition)
+    /* public EquipmentClass(string Name, Component NewCollider, Vector2 InitialPosition)
     {
         this.Name = Name;
-        this.Image = Image;
+        // this.Image = Image;
         this.NewCollider = NewCollider;
         this.InitialPosition = InitialPosition;
-    }
+    }*/
 
     /* public delegate void ClickEvent(); // Does this need to return some sort of object id?
     public static event ClickEvent OnClicked; // This probably needs to be non-static if I want specific object instances to trigger an event?

@@ -28,12 +28,12 @@ public class EquipmentFactory : MonoBehaviour // Should this inherit from Equipm
     // There is something wrong with how I am instantiating and then adding objects to the list
     void Start()
     {
-        Debug.Log(equipmentPrefabs.Count);
+        // Debug.Log(equipmentPrefabs.Count);
 
         // GameObject newEquipmentPrefab = (GameObject)Instantiate(EquipmentPrefab, transform.position, Quaternion.identity);
         // equipmentPrefabs.Add(newEquipmentPrefab); // I'm adding a newEquipmentPrefab, but I'm unable to do anything with it in GameEvents script
 
-        Debug.Log(equipmentPrefabs.Count);
+        // Debug.Log(equipmentPrefabs.Count);
         // equipmentPrefabs.Add(new EquipmentClass(myName, myImage, newCollider, myPosition)); // how do I access class properties here?
     }
 }

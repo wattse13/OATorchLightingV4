@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Attatched to the EquipmentPrefab GameObject prefab
+// Attatched to the GameEvents GameObject
 // Was previously a part of the EquipmentClass
 public class OnClickDelegate : MonoBehaviour
 {
-    public delegate void ClickEvent(GameObject e); // Does this need to return some sort of object id?
+    public delegate void ClickEvent(GameObject e);
     public static event ClickEvent OnClicked;
 
 
@@ -18,17 +18,10 @@ public class OnClickDelegate : MonoBehaviour
             Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero);
 
-            if (hit.collider != null)
+            if (hit.collider != null && hit.collider.TryGetComponent(out EquipmentClass equipment))
             {
-                OnClicked?.Invoke(this.gameObject);
+                OnClicked?.Invoke(hit.collider.gameObject);
             }
         }
-    }
-
-    public void BroadcastMessage()
-    {
-        // Debug.Log("hi MyFunction");
-        // What does this actually do? Nothing, currently
-        // I think I want it to send a message to other controller scripts
     }
 }
