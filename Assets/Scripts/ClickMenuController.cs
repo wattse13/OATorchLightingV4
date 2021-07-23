@@ -17,10 +17,15 @@ public class ClickMenuController : MonoBehaviour
     private GameObject inspectMenu;
     private GameObject useMenu;
    
+    // Buttons can probably all be private?
     public GameObject inspectButton;
-    public GameObject useButton;
     public GameObject backButton;
-    public GameObject replaceButton;
+    public GameObject exitButton;
+
+    public int offsetRight;
+    public int offsetLeft;
+
+    private RectTransform clickMenuTransform;
 
     // Delegates //
     
@@ -38,11 +43,13 @@ public class ClickMenuController : MonoBehaviour
     private void OnEnable()
     {
         GameEvents.OnMessageSent += ShowClickMenu;
+        GameEvents.OnMessageSent += MoveClickMenu;
     }
 
     private void OnDisable()
     {
         GameEvents.OnMessageSent -= ShowClickMenu;
+        GameEvents.OnMessageSent -= MoveClickMenu;
     }
 
     private void Start()
@@ -51,9 +58,12 @@ public class ClickMenuController : MonoBehaviour
         clickMenu = GameObject.Find("ClickMenu");
         inspectMenu = GameObject.Find("InspectMenu");
         useMenu = GameObject.Find("UseMenu");
+
         myTitle = GameObject.Find("EquipName").GetComponent<TMP_Text>(); // Makes changes only in Click Menu
         myText = GameObject.Find("EquipDescription").GetComponent<TMP_Text>();
         myUseText = GameObject.Find("UseDescription").GetComponent<TMP_Text>();
+        clickMenuTransform = clickMenu.GetComponent<RectTransform>();
+
         clickMenu.SetActive(false);
         inspectMenu.SetActive(false);
         useMenu.SetActive(false);
@@ -70,10 +80,27 @@ public class ClickMenuController : MonoBehaviour
 
             clickMenu.SetActive(true); // Need way to close click menu and way to prevent re-clicking on object while inspect/use menu is open
             myTitle.text = equipment.Name;
-            myText.text = equipment.DescriptionUnsafe;
+            myText.text = equipment.DescriptionUnsafe; // Should change based on equipment status
             myUseText.text = "Are you sure?"; // Meant as a check for now
 
             // Juice: Center clicked on GameObject and blur out everything else
+        }
+    }
+
+    public void MoveClickMenu(GameObject myClickedPrefab)
+    {
+        if (myClickedPrefab.TryGetComponent(out EquipmentClass equipment))
+        {
+            // I'm not doing my math correctly
+            // Should use screen width and what not
+            if (equipment.InitialPosition.x < 0)
+            {
+                clickMenuTransform.position = new Vector2(equipment.InitialPosition.x + offsetRight, 0);
+            }
+            else if (equipment.InitialPosition.x >= 0)
+            {
+                clickMenuTransform.position = new Vector2(equipment.InitialPosition.x - offsetLeft, 0);
+            }
         }
     }
 }

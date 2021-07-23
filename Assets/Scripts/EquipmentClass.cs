@@ -19,6 +19,8 @@ public class EquipmentClass : MonoBehaviour
     private string _descriptionSafe;
     [SerializeField]
     private string _descriptionUnsafe;
+    [SerializeField]
+    private int _initialScale;
     // private int _id;
     // private bool _isSafe;
     // private bool _isActive;
@@ -111,19 +113,27 @@ public class EquipmentClass : MonoBehaviour
             _descriptionUnsafe = value;
         }
     }
-    #endregion
 
-    /* public int Id
+    public int InitialScale
     {
         get
         {
-            return _id;
+            return _initialScale;
         }
         set
         {
-            _id = value;
+            _initialScale = value;
         }
-    } */
+    }
+    #endregion
+
+    // This will probably be moved to EquipmentFactory at some point
+    private void Awake()
+    {
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = UnsafeImage;
+        this.gameObject.GetComponent<Transform>().position = InitialPosition;
+        // this.gameObject.GetComponent<Transform>().localScale = InitialScale;
+    }
 
     /* public EquipmentClass(string Name, Component NewCollider, Vector2 InitialPosition)
     {
@@ -132,15 +142,4 @@ public class EquipmentClass : MonoBehaviour
         this.NewCollider = NewCollider;
         this.InitialPosition = InitialPosition;
     }*/
-
-    /* public delegate void ClickEvent(); // Does this need to return some sort of object id?
-    public static event ClickEvent OnClicked; // This probably needs to be non-static if I want specific object instances to trigger an event?
-
-    public void BroadcastMessage()
-    {
-        OnClicked?.Invoke();
-        Debug.Log("hi MyFunction");
-        // What does this actually do?
-        // I think I want it to send a message to other controller scripts
-    } */ // Placed inside OnClickDelegate Class
 }
