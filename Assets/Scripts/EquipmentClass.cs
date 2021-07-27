@@ -7,6 +7,13 @@ using UnityEngine;
 // I don't know if that's a good idea or not.
 public class EquipmentClass : MonoBehaviour 
 {
+    private Vector2 centeredPosition = new Vector2(0, 0);
+    private Vector2 currentPosition;
+
+    // private GameObject currentPrefab;
+
+    // private GameObject currentPrefab;
+
     [SerializeField]
     private string _name;
     [SerializeField]
@@ -130,9 +137,39 @@ public class EquipmentClass : MonoBehaviour
     // This will probably be moved to EquipmentFactory at some point
     private void Awake()
     {
-        this.gameObject.GetComponent<SpriteRenderer>().sprite = UnsafeImage;
-        this.gameObject.GetComponent<Transform>().position = InitialPosition;
+        GetComponent<SpriteRenderer>().sprite = UnsafeImage;
+        GetComponent<Transform>().position = InitialPosition;
+        // currentPosition = InitialPosition;
         // this.gameObject.GetComponent<Transform>().localScale = InitialScale;
+    }
+
+    private void OnEnable()
+    {
+        InspectMenuController.OnInspectMenuActivate += CenterPrefab;
+    }
+
+    private void OnDisable()
+    {
+        InspectMenuController.OnInspectMenuActivate -= CenterPrefab;
+    }
+
+    private void CenterPrefab(GameObject myClickedPrefab)
+    {
+        // currentPrefab = myClickedPrefab;
+        // currentPrefab.GetComponent<Transform>().position = centeredPosition;
+
+        // currentPrefab = myClickedPrefab;
+        /*if (myClickedPrefab.TryGetComponent(out EquipmentClass equipment))
+        {
+            Debug.Log("Hi EquipmentClass");
+            Debug.Log(equipment.Name);
+        }*/
+       
+        // Check which prefab was sent
+        // Check if sent prefab is centered
+        // If it is not centered, center it
+        // Change layer order
+        // enable alternate background (or should ths be handled somewhere else?)
     }
 
     /* public EquipmentClass(string Name, Component NewCollider, Vector2 InitialPosition)

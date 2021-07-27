@@ -24,14 +24,14 @@ public class GameEvents : MonoBehaviour
     private void OnEnable()
     {
         OnClickDelegate.OnClicked += WhoCalled;
-        ClickMenuController.OnStatusChanged += myFunction;
+        InspectMenuController.OnStatusChanged += myFunction;
         ClickMenuController.OnActiveStatusChanged += myOtherFunction;
     }
 
     private void OnDisable()
     {
         OnClickDelegate.OnClicked -= WhoCalled;
-        ClickMenuController.OnStatusChanged -= myFunction;
+        InspectMenuController.OnStatusChanged -= myFunction;
         ClickMenuController.OnActiveStatusChanged -= myOtherFunction;
     }
 

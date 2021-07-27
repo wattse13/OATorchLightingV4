@@ -27,14 +27,6 @@ public class ClickMenuController : MonoBehaviour
 
     private RectTransform clickMenuTransform;
 
-    // Delegates //
-    
-    // GameEvents is subscribed to this delegate event
-    // Will be used to send a message when a GameObject's safety status has been changed
-    public delegate void SafetyStatusEvent(GameObject e);
-    public static event SafetyStatusEvent OnStatusChanged;
-    // OnStatusChanged?.Invoke(this.gameObject);
-
     // GameEvents is subscribed to this delegate event
     // Will be used to send a message when a GameObject's active status has been changed
     public delegate void EquipActivateEvent(GameObject e);
