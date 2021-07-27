@@ -10,9 +10,6 @@ public class InspectMenuController : MonoBehaviour
     private int centerSortLayer = 1;
     private int originalSortLayer = 0;
 
-    public GameObject useButton;
-    public GameObject replaceButton;
-
     // Delegates //
 
     // GameEvents is subscribed to this delegate event
@@ -80,6 +77,7 @@ public class InspectMenuController : MonoBehaviour
     public void DisableCollider(GameObject myClickedPrefab)
     {
         currentPrefab.GetComponent<BoxCollider2D>().enabled = false;
+        // Should disable all box colliders to prevent bugs?
     }
 
     public void AddBackgroundBlur()
