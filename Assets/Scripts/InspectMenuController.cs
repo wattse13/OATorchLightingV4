@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Attatched to InspectMenuController GameObject
+// Also used to control UseMenu
 public class InspectMenuController : MonoBehaviour
 {
     private Vector2 centerTransform = new Vector2(0, 0);
     private GameObject currentPrefab;
     private int centerSortLayer = 1;
     private int originalSortLayer = 0;
+
+    public GameObject blurLayer;
 
     // Delegates //
 
@@ -18,10 +21,15 @@ public class InspectMenuController : MonoBehaviour
     public static event SafetyStatusEvent OnStatusChanged;
     // OnStatusChanged?.Invoke(this.gameObject);
 
-    // EquipmentClass is subscribed to this delegate event
     // Will be used to send a message when inspect menu has been activated
     public delegate void InspectMenuEvent(GameObject e);
     public static event InspectMenuEvent OnInspectMenuActivate;
+
+    private void Awake()
+    {
+        blurLayer.SetActive(false);
+        // blurLayer.GetComponent<SpriteRenderer>().enabled = false;
+    }
 
     private void OnEnable()
     {
@@ -51,9 +59,9 @@ public class InspectMenuController : MonoBehaviour
     {
         currentPrefab = GetCurrentPrefab();
         CenterPrefab(currentPrefab);
-        ChangeLayerOrder(currentPrefab);
+        FocusLayer(currentPrefab);
         DisableCollider(currentPrefab);
-        // AddBackgroundBlur();
+        AddBackgroundBlur();
     }
 
     // Not sure how much sense it makes to move GameObject from a menu controller
@@ -69,9 +77,9 @@ public class InspectMenuController : MonoBehaviour
 
     // I don't currently know how to access the SpriteRenderer's Order in Layer property
     // Same issue as above function, directly accesses GameObject component instead of using EquipmentClass values to change GameObject component values
-    public void ChangeLayerOrder(GameObject myClickedPrefab)
+    public void FocusLayer(GameObject myClickedPrefab)
     {
-        currentPrefab.GetComponent<SpriteRenderer>().sortingOrder = centerSortLayer;   
+        currentPrefab.GetComponent<SpriteRenderer>().sortingLayerID = SortingLayer.NameToID("Focus");   
     }
 
     public void DisableCollider(GameObject myClickedPrefab)
@@ -82,16 +90,16 @@ public class InspectMenuController : MonoBehaviour
 
     public void AddBackgroundBlur()
     {
-        // SomeSprite.SetActive = true;
+        blurLayer.SetActive(true);
     }
 
     public void ExitMenuFunctions()
     {
         currentPrefab = GetCurrentPrefab();
         ReturnPrefabPosition(currentPrefab);
-        ReturnPrefabSortOrder(currentPrefab);
+        ReturnPrefabSortLayer(currentPrefab);
         ReturnPrefabCollider(currentPrefab);
-        // Disable BackgroundBlur
+        RemoveBlur();
     }
 
     // Same general issues as CallMenuFunctions functions
@@ -106,9 +114,9 @@ public class InspectMenuController : MonoBehaviour
         
     }
 
-    public void ReturnPrefabSortOrder(GameObject myClickedPrefab)
+    public void ReturnPrefabSortLayer(GameObject myClickedPrefab)
     {
-        currentPrefab.GetComponent<SpriteRenderer>().sortingOrder = originalSortLayer;
+        currentPrefab.GetComponent<SpriteRenderer>().sortingLayerID = SortingLayer.NameToID("Foreground");
     }
 
     public void ReturnPrefabCollider(GameObject myClickedPrefab)
@@ -116,8 +124,8 @@ public class InspectMenuController : MonoBehaviour
         currentPrefab.GetComponent<BoxCollider2D>().enabled = true;
     }
 
-    public void RemoveBackBlur()
+    public void RemoveBlur()
     {
-        // SomeSprite.SetActive = false;
+        blurLayer.SetActive(false);
     }
 }

@@ -33,6 +33,7 @@ public class EquipmentClass : MonoBehaviour
     // private bool _isActive;
     // private list _animations;
     // private list _sounds;
+    // private sortingLayer _sortingLayer;
     [SerializeField]
     private Component _newCollider; // I don't think this is correct
 
@@ -139,37 +140,7 @@ public class EquipmentClass : MonoBehaviour
     {
         GetComponent<SpriteRenderer>().sprite = UnsafeImage;
         GetComponent<Transform>().position = InitialPosition;
-        // currentPosition = InitialPosition;
         // this.gameObject.GetComponent<Transform>().localScale = InitialScale;
-    }
-
-    private void OnEnable()
-    {
-        InspectMenuController.OnInspectMenuActivate += CenterPrefab;
-    }
-
-    private void OnDisable()
-    {
-        InspectMenuController.OnInspectMenuActivate -= CenterPrefab;
-    }
-
-    private void CenterPrefab(GameObject myClickedPrefab)
-    {
-        // currentPrefab = myClickedPrefab;
-        // currentPrefab.GetComponent<Transform>().position = centeredPosition;
-
-        // currentPrefab = myClickedPrefab;
-        /*if (myClickedPrefab.TryGetComponent(out EquipmentClass equipment))
-        {
-            Debug.Log("Hi EquipmentClass");
-            Debug.Log(equipment.Name);
-        }*/
-       
-        // Check which prefab was sent
-        // Check if sent prefab is centered
-        // If it is not centered, center it
-        // Change layer order
-        // enable alternate background (or should ths be handled somewhere else?)
     }
 
     /* public EquipmentClass(string Name, Component NewCollider, Vector2 InitialPosition)
