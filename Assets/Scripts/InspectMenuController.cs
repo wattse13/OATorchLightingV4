@@ -8,19 +8,22 @@ public class InspectMenuController : MonoBehaviour
 {
     private Vector2 centerTransform = new Vector2(0, 0);
     private GameObject currentPrefab;
-    private int centerSortLayer = 1;
-    private int originalSortLayer = 0;
+    // private int centerSortLayer = 1;
+    // private int originalSortLayer = 0;
 
     public GameObject blurLayer;
 
     // Delegates //
 
     // GameEvents is subscribed to this delegate event
+    // SafetyStateController is subscribed to this delegate event
+    // EquipmentClass is subscribed to this delegate event. Can't change values there, as it changes values for all GameObjects
     // Will be used to send a message when a GameObject's safety status has been changed
     public delegate void SafetyStatusEvent(GameObject e);
     public static event SafetyStatusEvent OnStatusChanged;
     // OnStatusChanged?.Invoke(this.gameObject);
 
+    // Nothing currently subscribed to this delegate event
     // Will be used to send a message when inspect menu has been activated
     public delegate void InspectMenuEvent(GameObject e);
     public static event InspectMenuEvent OnInspectMenuActivate;
@@ -38,6 +41,14 @@ public class InspectMenuController : MonoBehaviour
     private void OnDisable()
     {
         GameEvents.OnMessageSent -= SetCurrentPrefab;
+    }
+    
+    // Called by clicking Replace button
+    // Triggers delegate event
+    public void SafetyStateChange(GameObject myClickedPrefab)
+    {
+        OnStatusChanged?.Invoke(currentPrefab);
+        // Debug.Log("Hi SafetyStateChange");
     }
 
     // This method is called once a the OnMessageSent delegate event is triggered
@@ -79,7 +90,7 @@ public class InspectMenuController : MonoBehaviour
     // Same issue as above function, directly accesses GameObject component instead of using EquipmentClass values to change GameObject component values
     public void FocusLayer(GameObject myClickedPrefab)
     {
-        currentPrefab.GetComponent<SpriteRenderer>().sortingLayerID = SortingLayer.NameToID("Focus");   
+        currentPrefab.GetComponent<SpriteRenderer>().sortingLayerID = SortingLayer.NameToID("Focus");
     }
 
     public void DisableCollider(GameObject myClickedPrefab)

@@ -28,7 +28,8 @@ public class EquipmentClass : MonoBehaviour
     private string _descriptionUnsafe;
     [SerializeField]
     private int _initialScale;
-    // private int _id;
+    [SerializeField] // Should later be removed so that _iD value is not accidentally changed
+    private int _iD;
     // private bool _isSafe;
     // private bool _isActive;
     // private list _animations;
@@ -122,6 +123,14 @@ public class EquipmentClass : MonoBehaviour
         }
     }
 
+    public int ID
+    {
+        get
+        {
+            return _iD;
+        }
+    }
+
     public int InitialScale
     {
         get
@@ -141,6 +150,21 @@ public class EquipmentClass : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = UnsafeImage;
         GetComponent<Transform>().position = InitialPosition;
         // this.gameObject.GetComponent<Transform>().localScale = InitialScale;
+    }
+
+    private void OnEnable()
+    {
+        InspectMenuController.OnStatusChanged += ChangeSprite;
+    }
+
+    private void OnDisable()
+    {
+        InspectMenuController.OnStatusChanged -= ChangeSprite;
+    }
+
+    private void ChangeSprite(GameObject myClickedPrefab)
+    {
+        // Doing anything here will change sprites for all GameObjects?
     }
 
     /* public EquipmentClass(string Name, Component NewCollider, Vector2 InitialPosition)
