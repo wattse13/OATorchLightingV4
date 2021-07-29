@@ -17,11 +17,15 @@ public class EquipmentClass : MonoBehaviour
     [SerializeField]
     private string _name;
     [SerializeField]
+    private Sprite _currentImage;
+    [SerializeField]
     private Sprite _safeImage;
     [SerializeField]
     private Sprite _unsafeImage;
     [SerializeField]
     private Vector2 _position;
+    [SerializeField] // Should later remove so that _descriptionCurrent is set by script only
+    private string _descriptionCurrent;
     [SerializeField]
     private string _descriptionSafe;
     [SerializeField]
@@ -30,7 +34,8 @@ public class EquipmentClass : MonoBehaviour
     private int _initialScale;
     [SerializeField] // Should later be removed so that _iD value is not accidentally changed
     private int _iD;
-    // private bool _isSafe;
+    [SerializeField]
+    private bool _isSafe;
     // private bool _isActive;
     // private list _animations;
     // private list _sounds;
@@ -48,6 +53,18 @@ public class EquipmentClass : MonoBehaviour
         set
         {
             _name = value;
+        }
+    }
+
+    public Sprite CurrentImage
+    {
+        get
+        {
+            return _currentImage;
+        }
+        set
+        {
+            _currentImage = value;
         }
     }
 
@@ -99,6 +116,30 @@ public class EquipmentClass : MonoBehaviour
         }
     }
 
+    public bool IsSafe
+    {
+        get
+        {
+            return _isSafe;
+        }
+        set
+        {
+            _isSafe = value;
+        }
+    }
+
+    public string DescriptionCurrent
+    {
+        get
+        {
+            return _descriptionCurrent;
+        }
+        set
+        {
+            _descriptionCurrent = value;
+        }
+    }
+
     public string DescriptionSafe
     {
         get
@@ -147,24 +188,17 @@ public class EquipmentClass : MonoBehaviour
     // This will probably be moved to EquipmentFactory at some point
     private void Awake()
     {
-        GetComponent<SpriteRenderer>().sprite = UnsafeImage;
+        SetInitialValues();
+    }
+
+    private void SetInitialValues()
+    {
+        CurrentImage = UnsafeImage;
+        GetComponent<SpriteRenderer>().sprite = CurrentImage;
         GetComponent<Transform>().position = InitialPosition;
+        DescriptionCurrent = DescriptionUnsafe;
+        IsSafe = false;
         // this.gameObject.GetComponent<Transform>().localScale = InitialScale;
-    }
-
-    private void OnEnable()
-    {
-        InspectMenuController.OnStatusChanged += ChangeSprite;
-    }
-
-    private void OnDisable()
-    {
-        InspectMenuController.OnStatusChanged -= ChangeSprite;
-    }
-
-    private void ChangeSprite(GameObject myClickedPrefab)
-    {
-        // Doing anything here will change sprites for all GameObjects?
     }
 
     /* public EquipmentClass(string Name, Component NewCollider, Vector2 InitialPosition)

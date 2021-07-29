@@ -24,15 +24,15 @@ public class GameEvents : MonoBehaviour
     private void OnEnable()
     {
         OnClickDelegate.OnClicked += WhoCalled;
-        InspectMenuController.OnStatusChanged += myFunction;
-        ClickMenuController.OnActiveStatusChanged += myOtherFunction;
+        // InspectMenuController.OnStatusChanged += myFunction;
+        // ClickMenuController.OnActiveStatusChanged += myOtherFunction;
     }
 
     private void OnDisable()
     {
         OnClickDelegate.OnClicked -= WhoCalled;
-        InspectMenuController.OnStatusChanged -= myFunction;
-        ClickMenuController.OnActiveStatusChanged -= myOtherFunction;
+        // InspectMenuController.OnStatusChanged -= myFunction;
+        // ClickMenuController.OnActiveStatusChanged -= myOtherFunction;
     }
 
     // When GameEvents recieves a message from OnClickDelegate, it triggers its own delegate event, OnMessageSent

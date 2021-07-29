@@ -8,14 +8,32 @@ public class EquipmentController : MonoBehaviour
     private Vector2 centerTransform = new Vector2(0, 0);
     private GameObject currentPrefab;
 
+    private string currentPrefabName;
+    private Sprite currentPrefabImage;
+    private Sprite currentPrefabUnsafeImage;
+    private Sprite currentPrefabSafeImage;
+    private Vector2 currentPrefabPosition;
+    private string currentPrefabDescr;
+    private string currentPrefabDescrUnsafe;
+    private string currentPrefabDescrSafe;
+    private int currentPrefabID;
+    private bool isCurrentPrefabSafe;
+
+
     private void OnEnable()
     {
         GameEvents.OnMessageSent += SetCurrentPrefab;
+        GameEvents.OnMessageSent += SetCurrentPrefabValues;
+        SafetyStateController.OnStatusChanged += SetSafetyValue;
+        // SafetyStateController.OnStatusChanged += ChangeSprite;
     }
 
     private void OnDisable()
     {
         GameEvents.OnMessageSent -= SetCurrentPrefab;
+        GameEvents.OnMessageSent -= SetCurrentPrefabValues;
+        SafetyStateController.OnStatusChanged -= SetSafetyValue;
+        // SafetyStateController.OnStatusChanged -= ChangeSprite;
     }
 
     // This method is called once a the OnMessageSent delegate event is triggered
@@ -31,9 +49,45 @@ public class EquipmentController : MonoBehaviour
         return currentPrefab;
     }
 
+    public void SetCurrentPrefabValues(GameObject myClickedPrefab)
+    {
+        if(myClickedPrefab.TryGetComponent(out EquipmentClass equipment))
+        {
+            currentPrefabName = equipment.Name;
+            currentPrefabImage = equipment.CurrentImage;
+            currentPrefabUnsafeImage = equipment.UnsafeImage;
+            currentPrefabSafeImage = equipment.SafeImage;
+            currentPrefabPosition = equipment.InitialPosition;
+            currentPrefabDescr = equipment.DescriptionCurrent;
+            currentPrefabDescrUnsafe = equipment.DescriptionUnsafe;
+            currentPrefabDescrSafe = equipment.DescriptionSafe;
+            currentPrefabID = equipment.ID;
+            isCurrentPrefabSafe = equipment.IsSafe;
+        }
+    }
+    
+    public void SetSafetyValue(GameObject myClickedPrefab)
+    {
+        isCurrentPrefabSafe = true;
+
+        if(myClickedPrefab.TryGetComponent(out EquipmentClass equipment))
+        {
+            equipment.IsSafe = true;
+        }
+    }
+
+    public void ChangeSprite()
+    {
+        if(isCurrentPrefabSafe == true)
+        {
+            currentPrefabImage = currentPrefabSafeImage;
+        }
+    }
+
     #region Focus Prefab
     // Assigns currentPrefab variable to value of the GetCurrentPrefab() return value
     // Calls all functions related to centering and emphasizing inspected GameObject and passes currentPrefab in as argument
+    // Called when ClickMenu Inspect or Use button is clicked
     public void CallMenuFunctions()
     {
         currentPrefab = GetCurrentPrefab();
@@ -66,6 +120,8 @@ public class EquipmentController : MonoBehaviour
     #endregion
 
     #region Restore Prefab
+
+    // Called when Inspect or Use Menu Exit or Back buttons are clicked
     public void ExitMenuFunctions()
     {
         currentPrefab = GetCurrentPrefab();
