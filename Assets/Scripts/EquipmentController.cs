@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Attached to EquipmentController GameObject
+// Should handle GameObject appearance, position, and other values
+// If necessary, should change EquipmentClass values, like isSafe or isActive
 public class EquipmentController : MonoBehaviour
 {
     private Vector2 centerTransform = new Vector2(0, 0);
@@ -19,21 +21,25 @@ public class EquipmentController : MonoBehaviour
     private int currentPrefabID;
     private bool isCurrentPrefabSafe;
 
+    // Inspect Menu is subscribed to this delegate event
+    // SafetyStateController is subscribed to this delegate event
+    // Alerts subscribers that a GameObject value has changed
+    public delegate void PrefabValueChange(GameObject e);
+    public static event PrefabValueChange OnValueChanged;
+
 
     private void OnEnable()
     {
         GameEvents.OnMessageSent += SetCurrentPrefab;
         GameEvents.OnMessageSent += SetCurrentPrefabValues;
-        SafetyStateController.OnStatusChanged += SetSafetyValue;
-        // SafetyStateController.OnStatusChanged += ChangeSprite;
+        // SafetyStateController.OnStatusChanged += SetSafetyValue;
     }
 
     private void OnDisable()
     {
         GameEvents.OnMessageSent -= SetCurrentPrefab;
         GameEvents.OnMessageSent -= SetCurrentPrefabValues;
-        SafetyStateController.OnStatusChanged -= SetSafetyValue;
-        // SafetyStateController.OnStatusChanged -= ChangeSprite;
+        // SafetyStateController.OnStatusChanged -= SetSafetyValue;
     }
 
     // This method is called once a the OnMessageSent delegate event is triggered
@@ -49,6 +55,14 @@ public class EquipmentController : MonoBehaviour
         return currentPrefab;
     }
 
+    // Indirectly invokes OnValueChanged delegate event as delegate event is invoked as part of SetSafteyValue() function
+    public void ReplaceButtonClicked()
+    {
+        SetCurrentPrefabValues(currentPrefab);
+        SetSafetyValue(currentPrefab);
+    }
+
+    // My hope is that setting a buch of variable data here will prevent needing out parameter in other functions
     public void SetCurrentPrefabValues(GameObject myClickedPrefab)
     {
         if(myClickedPrefab.TryGetComponent(out EquipmentClass equipment))
@@ -57,7 +71,7 @@ public class EquipmentController : MonoBehaviour
             currentPrefabImage = equipment.CurrentImage;
             currentPrefabUnsafeImage = equipment.UnsafeImage;
             currentPrefabSafeImage = equipment.SafeImage;
-            currentPrefabPosition = equipment.InitialPosition;
+            currentPrefabPosition = equipment.InitialPosition; // Name may be kind of confusing
             currentPrefabDescr = equipment.DescriptionCurrent;
             currentPrefabDescrUnsafe = equipment.DescriptionUnsafe;
             currentPrefabDescrSafe = equipment.DescriptionSafe;
@@ -66,21 +80,29 @@ public class EquipmentController : MonoBehaviour
         }
     }
     
+    // Changes the isSafe value of a clicked on GameObject
+    // Out parameter is still necessary to change EquipmentClass values
     public void SetSafetyValue(GameObject myClickedPrefab)
     {
         isCurrentPrefabSafe = true;
 
+        // I think this changes the EquipmentClass value
         if(myClickedPrefab.TryGetComponent(out EquipmentClass equipment))
         {
             equipment.IsSafe = true;
         }
+        // Alerts subscribers that value has been changed
+        OnValueChanged?.Invoke(myClickedPrefab);
     }
 
+    // If isCurrentPrefabSafe is true, the currentPrefab sprite is changed to safe variant
+    // Called whene Replace button is clicked
+    // Is this better, or should I do something similiar to the SetSafetyValue function above?
     public void ChangeSprite()
     {
         if(isCurrentPrefabSafe == true)
         {
-            currentPrefabImage = currentPrefabSafeImage;
+            currentPrefab.GetComponent<SpriteRenderer>().sprite = currentPrefabSafeImage;
         }
     }
 
@@ -135,10 +157,12 @@ public class EquipmentController : MonoBehaviour
     // It does use EquipmentClass properites to change GameObject-Component values
     public void ReturnPrefabPosition(GameObject myClickedPrefab)
     {
-        if (myClickedPrefab.TryGetComponent(out EquipmentClass equipment))
-        {
-            currentPrefab.GetComponent<Transform>().position = equipment.InitialPosition;
-        }
+        currentPrefab.transform.position = currentPrefabPosition;
+        
+        //if (myClickedPrefab.TryGetComponent(out EquipmentClass equipment))
+        //{
+        //    currentPrefab.GetComponent<Transform>().position = equipment.InitialPosition;
+        //}
     }
 
     public void ReturnPrefabSortLayer(GameObject myClickedPrefab)

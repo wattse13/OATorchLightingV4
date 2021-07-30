@@ -52,7 +52,6 @@ public class ClickMenuController : MonoBehaviour
         useMenu = GameObject.Find("UseMenu");
 
         myTitle = GameObject.Find("EquipName").GetComponent<TMP_Text>(); // Makes changes only in Click Menu
-        //myText = GameObject.Find("EquipDescription").GetComponent<TMP_Text>();
         myUseText = GameObject.Find("UseDescription").GetComponent<TMP_Text>();
         clickMenuTransform = clickMenu.GetComponent<RectTransform>();
 
@@ -73,7 +72,6 @@ public class ClickMenuController : MonoBehaviour
 
             clickMenu.SetActive(true); // Need way to prevent re-clicking on object while inspect/use menu is open
             myTitle.text = equipment.Name;
-            // myText.text = equipment.DescriptionUnsafe; // Should change based on equipment status
             myUseText.text = "Are you sure?"; // Meant as a check for now
         }
     }

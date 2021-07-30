@@ -203,19 +203,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1114083505}
+      - m_Target: {fileID: 1706403868}
         m_MethodName: ReplaceButtonClicked
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 140435937}
-        m_MethodName: ChangeInspectText
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2142,7 +2131,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97194c51f4b9aa049a9a4b97212f4f48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentPrefab: {fileID: 0}
 --- !u!4 &1114083506
 Transform:
   m_ObjectHideFlags: 0
@@ -2406,17 +2394,6 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 140435937}
         m_MethodName: AddBackgroundBlur
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 140435937}
-        m_MethodName: ValueTest
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3989,6 +3966,18 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
+      propertyPath: _useSafeDescr
+      value: Stores lots of oxygen at high pressure. It is dent free and ready to
+        use.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _useUnsafeDescr
+      value: Stores lots of oxygen at high pressure. Using it in this state is not
+        a good idea.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
       propertyPath: _descriptionSafe
       value: This Oxygen Cylinder is clean and undamaged.
       objectReference: {fileID: 0}
@@ -4120,6 +4109,17 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 140435937}
         m_MethodName: AddBackgroundBlur
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 140435937}
+        m_MethodName: SetUseText
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4409,6 +4409,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 33f3bb67a4e9f8a45b124e967d310c8f,
         type: 3}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _useSafeDescr
+      value: Stores lots of oxygen at high pressure. It is clean and ready to use.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _useUnsafeDescr
+      value: Stores lots of oxygen at high pressure. Using it in this state is dangerous.
+      objectReference: {fileID: 0}
     - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: _descriptionSafe

@@ -25,11 +25,23 @@ public class EquipmentClass : MonoBehaviour
     [SerializeField]
     private Vector2 _position;
     [SerializeField] // Should later remove so that _descriptionCurrent is set by script only
+    [TextArea(3, 10)]
     private string _descriptionCurrent;
     [SerializeField]
+    [TextArea(3, 10)]
     private string _descriptionSafe;
     [SerializeField]
+    [TextArea(3, 10)]
     private string _descriptionUnsafe;
+    [SerializeField]
+    [TextArea(3, 10)]
+    private string _useCurrentDescr;
+    [SerializeField]
+    [TextArea(3, 10)]
+    private string _useSafeDescr;
+    [SerializeField]
+    [TextArea(3, 10)]
+    private string _useUnsafeDescr;
     [SerializeField]
     private int _initialScale;
     [SerializeField] // Should later be removed so that _iD value is not accidentally changed
@@ -164,6 +176,42 @@ public class EquipmentClass : MonoBehaviour
         }
     }
 
+    public string UseCurrentDescr
+    {
+        get
+        {
+            return _useCurrentDescr;
+        }
+        set
+        {
+            _useCurrentDescr = value;
+        }
+    }
+
+    public string UseSafeDescr
+    {
+        get
+        {
+            return _useSafeDescr;
+        }
+        set
+        {
+            _useSafeDescr = value;
+        }
+    }
+
+    public string UseUnsafeDescr
+    {
+        get
+        {
+            return _useUnsafeDescr;
+        }
+        set
+        {
+            _useUnsafeDescr = value;
+        }
+    }
+
     public int ID
     {
         get
@@ -197,6 +245,7 @@ public class EquipmentClass : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = CurrentImage;
         GetComponent<Transform>().position = InitialPosition;
         DescriptionCurrent = DescriptionUnsafe;
+        UseCurrentDescr = UseUnsafeDescr;
         IsSafe = false;
         // this.gameObject.GetComponent<Transform>().localScale = InitialScale;
     }

@@ -6,21 +6,23 @@ using UnityEngine;
 public class SafetyStateController : MonoBehaviour
 {
     Dictionary<int, bool> safetyStates = new Dictionary<int, bool>();
+
     private int currentID;
+    private int safeEquipCount = 0;
 
-    public GameObject currentPrefab;
+    private bool isAllSafe = false;
 
-    // GameEvents is subscribed to this delegate event
-    // SafetyStateController is subscribed to this delegate event
-    // EquipmentClass is subscribed to this delegate event. Can't change values there, as it changes values for all GameObjects
+    // public GameObject currentPrefab; // Not currently needed
+
+    // InspectMenuController is subscribed to this delegate event
     // Will be used to send a message when a GameObject's safety status has been changed
-    public delegate void SafetyStatusEvent(GameObject e);
+    public delegate void SafetyStatusEvent();
     public static event SafetyStatusEvent OnStatusChanged;
     // OnStatusChanged?.Invoke(this.gameObject);
 
     private void Awake()
     {
-        // Integer key needs corresponds to GameObject ID
+        // Integer key must correspond to GameObject ID
         // Very Important Key integer matches GameObject ID integer
         safetyStates.Add(1, false); // Corresponds to Cylinder 1
         safetyStates.Add(2, false); // Corresponds to Cylinder 2
@@ -28,38 +30,19 @@ public class SafetyStateController : MonoBehaviour
 
     private void OnEnable()
     {
-        // When SafetyStatusEvent event is triggered, SetCurrentID function is called
-        // Reference to clicked on GameObject is passed along with triggered event
-        // InspectMenuController.OnStatusChanged += SetCurrentID;
-        GameEvents.OnMessageSent += SetCurrentPrefab;
+        EquipmentController.OnValueChanged += SetCurrentID;
+        // GameEvents.OnMessageSent += SetCurrentPrefab; // Not currently needed
     }
 
     private void OnDisable()
     {
-        // Unsubscribes from SafetyStatusEvent event if this script is disabled
-        // InspectMenuController.OnStatusChanged -= SetCurrentID;
-        GameEvents.OnMessageSent -= SetCurrentPrefab;
-    }
-
-    public void SetCurrentPrefab(GameObject myClickedPrefab)
-    {
-        currentPrefab = myClickedPrefab;
-    }
-
-    public GameObject GetCurrentPrefab()
-    {
-        return currentPrefab;
-    }
-
-    public void ReplaceButtonClicked()
-    {
-        OnStatusChanged?.Invoke(currentPrefab);
-        // SetCurrentID(GameObject myClickedPrefab);
-        // ChangeDictValue();
+        EquipmentController.OnValueChanged -= SetCurrentID;
+        // GameEvents.OnMessageSent -= SetCurrentPrefab; // Not currently needed
     }
 
     // This function finds the ID integer value of the passed in GameObject
     // The clicked on GameObject which has been passed with the SafetyStatusEvent event delegate is passed in myClickedPrefab argument
+    // Also calls ChangeDictValue() function
     private void SetCurrentID(GameObject myClickedPrefab)
     {
         // Determine GameObject ID
@@ -68,26 +51,58 @@ public class SafetyStateController : MonoBehaviour
             // Debug.Log(equipment.Name);
             currentID = equipment.ID;
         } // Should I add else statement to any of these?
-        ChangeDictValue();
-        ChangeSprite(myClickedPrefab); 
+
+        ChangeDictValue(); // Seems a little messy to call these three functions from here
+        AddSafeEquipCount();
+        AreAllEquipSafe();
     }
 
     // Called after SetCurrentID finds the clicked on GameObject ID value
     // Clicked on GameObject ID value SHOULD correspond with specific key value in safetyStatus dictionary
     private void ChangeDictValue()
     {
-        // Debug.Log(safetyStates[1]);
+        //Debug.Log(safetyStates[1]);
+        //Debug.Log(safetyStates[2]);
         safetyStates[currentID] = true;
-        // Debug.Log(safetyStates[1]);
+        //Debug.Log(safetyStates[1]);
+        //Debug.Log(safetyStates[2]);
     }
 
-    // Does it make sense to do that here? Changing it in EquipmentClass will change all GameObjects
-    // Changes the clicked on GameObject sprite to safe variant
-    private void ChangeSprite(GameObject myClickedPrefab)
+    // Called at end of SetCurrentID which feels messy
+    // Simply increases safeEquipCount value by one
+    private void AddSafeEquipCount()
     {
-        if(myClickedPrefab.TryGetComponent(out EquipmentClass equipment))
+        safeEquipCount += 1;
+        Debug.Log(safeEquipCount);
+    }
+
+    // Called at end of SetCurrentID which feels messy
+    // If value of safeEquipCount is equal to dictionary count all equipment objects have been sucesfully inspected
+    private void AreAllEquipSafe()
+    {
+        if(safeEquipCount == safetyStates.Count)
         {
-            myClickedPrefab.GetComponent<SpriteRenderer>().sprite = equipment.SafeImage;
+            isAllSafe = true;
+            OnStatusChanged?.Invoke();
+            // Debug.Log("We're all safe!");
+        }
+        else if(safeEquipCount < safetyStates.Count)
+        {
+            Debug.Log("Someone's still unsafe");
         }
     }
+
+    #region Code Graveyard
+
+    //public void SetCurrentPrefab(GameObject myClickedPrefab)
+    //{
+    //    currentPrefab = myClickedPrefab;
+    //}
+
+    //public GameObject GetCurrentPrefab()
+    //{
+    //    return currentPrefab;
+    //}
+
+    #endregion
 }
