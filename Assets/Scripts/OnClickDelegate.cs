@@ -6,6 +6,10 @@ using UnityEngine;
 // Was previously a part of the EquipmentClass
 public class OnClickDelegate : MonoBehaviour
 {
+
+    // ClickMenuController is subscribed to this delegate event
+    // EquipmentController is subscribed to this delegate event
+    // InspectMenuContrller is subscribed to this delegate event
     public delegate void ClickEvent(GameObject e);
     public static event ClickEvent OnClicked;
 

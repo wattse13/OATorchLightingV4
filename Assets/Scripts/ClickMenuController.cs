@@ -29,19 +29,19 @@ public class ClickMenuController : MonoBehaviour
 
     // GameEvents is subscribed to this delegate event
     // Will be used to send a message when a GameObject's active status has been changed
-    public delegate void EquipActivateEvent(GameObject e);
-    public static event EquipActivateEvent OnActiveStatusChanged;
+    // public delegate void EquipActivateEvent(GameObject e);
+    // public static event EquipActivateEvent OnActiveStatusChanged;
 
     private void OnEnable()
     {
-        GameEvents.OnMessageSent += ShowClickMenu;
-        GameEvents.OnMessageSent += MoveClickMenu;
+        OnClickDelegate.OnClicked += ShowClickMenu;
+        OnClickDelegate.OnClicked += MoveClickMenu;
     }
 
     private void OnDisable()
     {
-        GameEvents.OnMessageSent -= ShowClickMenu;
-        GameEvents.OnMessageSent -= MoveClickMenu;
+        OnClickDelegate.OnClicked -= ShowClickMenu;
+        OnClickDelegate.OnClicked -= MoveClickMenu;
     }
 
     private void Start()

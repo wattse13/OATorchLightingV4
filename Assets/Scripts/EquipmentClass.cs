@@ -10,10 +10,6 @@ public class EquipmentClass : MonoBehaviour
     private Vector2 centeredPosition = new Vector2(0, 0);
     private Vector2 currentPosition;
 
-    // private GameObject currentPrefab;
-
-    // private GameObject currentPrefab;
-
     [SerializeField]
     private string _name;
     [SerializeField]
@@ -48,6 +44,8 @@ public class EquipmentClass : MonoBehaviour
     private int _iD;
     [SerializeField]
     private bool _isSafe;
+    [SerializeField]
+    private bool _isActive;
     // private bool _isActive;
     // private list _animations;
     // private list _sounds;
@@ -137,6 +135,18 @@ public class EquipmentClass : MonoBehaviour
         set
         {
             _isSafe = value;
+        }
+    }
+
+    public bool IsActive
+    {
+        get
+        {
+            return _isActive;
+        }
+        set
+        {
+            _isActive = value;
         }
     }
 
@@ -247,6 +257,7 @@ public class EquipmentClass : MonoBehaviour
         DescriptionCurrent = DescriptionUnsafe;
         UseCurrentDescr = UseUnsafeDescr;
         IsSafe = false;
+        IsActive = false;
         // this.gameObject.GetComponent<Transform>().localScale = InitialScale;
     }
 

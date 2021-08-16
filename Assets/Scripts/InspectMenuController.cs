@@ -18,9 +18,11 @@ public class InspectMenuController : MonoBehaviour
     private TMP_Text myInspectText;
     private TMP_Text myUseTitle;
     private TMP_Text myUseText;
+    private TMP_Text myUseButtonText;
 
     // private bool isPrefabActive;
     private bool isPrefabSafe;
+    private bool isPrefabActive;
     private string currentPrefabName;
     private string currentPrefabDescr;
     private string currentPrefabDescrUnsafe;
@@ -34,14 +36,14 @@ public class InspectMenuController : MonoBehaviour
     // Delegates //
 
     // Will be used to send a message when a GameObject's active status has been changed
-    public delegate void ActiveStatusEvent(GameObject e);
-    public static event ActiveStatusEvent OnActivate;
+    // public delegate void ActiveStatusEvent(GameObject e);
+    // public static event ActiveStatusEvent OnActivate;
 
     // Nothing currently subscribed to this delegate event
     // Will be used to send a message when inspect menu has been activated
     // Not sure this is necessary
-    public delegate void InspectMenuEvent(GameObject e);
-    public static event InspectMenuEvent OnInspectMenuActivate;
+    // public delegate void InspectMenuEvent(GameObject e);
+    // public static event InspectMenuEvent OnInspectMenuActivate;
 
     private void Awake()
     {
@@ -51,16 +53,18 @@ public class InspectMenuController : MonoBehaviour
     private void OnEnable()
     {
         // GameEvents.OnMessageSent += SetCurrentPrefab;
-        GameEvents.OnMessageSent += SetCurrentPrefabValues;
+        OnClickDelegate.OnClicked += SetCurrentPrefabValues;
         SafetyStateController.OnStatusChanged += AllSafe;
-        EquipmentController.OnValueChanged += UpdatePrefabSafetyStatus;
+        EquipmentController.OnSafetyValueChanged += UpdatePrefabSafetyStatus;
+        EquipmentController.OnActiveValueChanged += UpdatePrefabActiveStatus;
     }
     private void OnDisable()
     {
         // GameEvents.OnMessageSent -= SetCurrentPrefab;
-        GameEvents.OnMessageSent -= SetCurrentPrefabValues;
+        OnClickDelegate.OnClicked -= SetCurrentPrefabValues;
         SafetyStateController.OnStatusChanged -= AllSafe;
-        EquipmentController.OnValueChanged -= UpdatePrefabSafetyStatus;
+        EquipmentController.OnSafetyValueChanged -= UpdatePrefabSafetyStatus;
+        EquipmentController.OnActiveValueChanged -= UpdatePrefabActiveStatus;
     }
 
     private void Start()
@@ -72,6 +76,7 @@ public class InspectMenuController : MonoBehaviour
         myInspectText = GameObject.Find("InspectDescription").GetComponent<TMP_Text>();
         myUseTitle = GameObject.Find("EquipUseName").GetComponent<TMP_Text>();
         myUseText = GameObject.Find("UseDescription").GetComponent<TMP_Text>();
+        myUseButtonText = GameObject.Find("UseButton").GetComponentInChildren<TMP_Text>();
     }
 
     public void SetCurrentPrefabValues(GameObject myClickedPrefab)
@@ -85,10 +90,12 @@ public class InspectMenuController : MonoBehaviour
             currentPrefabUseSafeDescr = equipment.UseSafeDescr;
             currentPrefabUseUnsafeDescr = equipment.UseUnsafeDescr;
             isPrefabSafe = equipment.IsSafe;
+            isPrefabActive = equipment.IsActive;
         }
+        ChangeUseButton(); // Bit hacky, but makes sure Use Button updates before player clicks on new object
     }
 
-    // Called after OnValueChanged event is triggered
+    // Called after OnSafetyValueChanged event is triggered
     public void UpdatePrefabSafetyStatus(GameObject myClickedPrefab)
     {
         if(myClickedPrefab.TryGetComponent(out EquipmentClass equipment))
@@ -97,6 +104,16 @@ public class InspectMenuController : MonoBehaviour
             SetInspectText();
             SetUseText();
             // Debug.Log("Updating");
+        }
+    }
+
+    // Called after OnActiveValueChanged event is triggered
+    public void UpdatePrefabActiveStatus(GameObject myClickedPrefab)
+    {
+        if(myClickedPrefab.TryGetComponent(out EquipmentClass equipment))
+        {
+            isPrefabActive = equipment.IsActive;
+            ChangeUseButton();
         }
     }
 
@@ -128,6 +145,21 @@ public class InspectMenuController : MonoBehaviour
             myInspectText.text = currentPrefabDescrSafe;
             replaceButton.SetActive(false);
             // Debug.Log("It's safe now");
+        }
+    }
+
+    // Called at end of UpdatePrefabActiveStatus function
+    // Changes UseButton text from activate to deactivate depending on value of isPrefabActive value
+    // Requires second call in SetCurrentPrefabValues function to work properly
+    public void ChangeUseButton()
+    {
+        if(isPrefabActive == true)
+        {
+            myUseButtonText.text = "Deactivate";
+        }
+        else if(isPrefabActive == false)
+        {
+            myUseButtonText.text = "Activate";
         }
     }
 

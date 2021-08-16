@@ -4,14 +4,13 @@ using UnityEngine;
 
 // Attatched to GameEvents GameObject
 // Subscribed to OnClickDelegate
+// This script currently serves no purpose
 public class GameEvents : MonoBehaviour
 {
     private EquipmentFactory equipmentFactory; // Does this create a dependency?
     // private EquipmentClass equipmentClass;
 
     // Delegates //
-
-    // ClickMenuController is currently subscribed to this delegate event
     public delegate void MessageEvent(GameObject e);
     public static event MessageEvent OnMessageSent; // This works but feels hacky?
 

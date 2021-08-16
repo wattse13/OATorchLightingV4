@@ -20,25 +20,31 @@ public class EquipmentController : MonoBehaviour
     private string currentPrefabDescrSafe;
     private int currentPrefabID;
     private bool isCurrentPrefabSafe;
+    private bool isCurrentPrefabActive;
 
     // Inspect Menu is subscribed to this delegate event
     // SafetyStateController is subscribed to this delegate event
-    // Alerts subscribers that a GameObject value has changed
-    public delegate void PrefabValueChange(GameObject e);
-    public static event PrefabValueChange OnValueChanged;
+    // Alerts subscribers that a GameObject safety value has changed
+    public delegate void PrefabSafeValueChange(GameObject e);
+    public static event PrefabSafeValueChange OnSafetyValueChanged;
 
+    // Inspect Menu is subscribed to this delegate event
+    // SafetyStateController is subscribed to this delegate event
+    // Alerts subscribers that a GameObject active value has changed
+    public delegate void PrefabActiveValueChange(GameObject e);
+    public static event PrefabActiveValueChange OnActiveValueChanged;
 
     private void OnEnable()
     {
-        GameEvents.OnMessageSent += SetCurrentPrefab;
-        GameEvents.OnMessageSent += SetCurrentPrefabValues;
+        OnClickDelegate.OnClicked += SetCurrentPrefab;
+        OnClickDelegate.OnClicked += SetCurrentPrefabValues;
         // SafetyStateController.OnStatusChanged += SetSafetyValue;
     }
 
     private void OnDisable()
     {
-        GameEvents.OnMessageSent -= SetCurrentPrefab;
-        GameEvents.OnMessageSent -= SetCurrentPrefabValues;
+        OnClickDelegate.OnClicked -= SetCurrentPrefab;
+        OnClickDelegate.OnClicked -= SetCurrentPrefabValues;
         // SafetyStateController.OnStatusChanged -= SetSafetyValue;
     }
 
@@ -55,11 +61,18 @@ public class EquipmentController : MonoBehaviour
         return currentPrefab;
     }
 
-    // Indirectly invokes OnValueChanged delegate event as delegate event is invoked as part of SetSafteyValue() function
+    // Indirectly invokes OnSafetyValueChanged delegate event as delegate event is invoked as part of SetSafteyValue() function
     public void ReplaceButtonClicked()
     {
         SetCurrentPrefabValues(currentPrefab);
         SetSafetyValue(currentPrefab);
+    }
+
+    // Indirectly invokes OnActiveValueChanged delegate event as delegate event is invoked as part of SetActiveValue() function
+    public void UseButtonClicked()
+    {
+        SetCurrentPrefabValues(currentPrefab);
+        SetActiveValue(currentPrefab);
     }
 
     // My hope is that setting a buch of variable data here will prevent needing out parameter in other functions
@@ -77,11 +90,13 @@ public class EquipmentController : MonoBehaviour
             currentPrefabDescrSafe = equipment.DescriptionSafe;
             currentPrefabID = equipment.ID;
             isCurrentPrefabSafe = equipment.IsSafe;
+            isCurrentPrefabActive = equipment.IsActive;
         }
     }
     
     // Changes the isSafe value of a clicked on GameObject
     // Out parameter is still necessary to change EquipmentClass values
+    // Called by ReplaceButtonClicked Function
     public void SetSafetyValue(GameObject myClickedPrefab)
     {
         isCurrentPrefabSafe = true;
@@ -92,7 +107,32 @@ public class EquipmentController : MonoBehaviour
             equipment.IsSafe = true;
         }
         // Alerts subscribers that value has been changed
-        OnValueChanged?.Invoke(myClickedPrefab);
+        OnSafetyValueChanged?.Invoke(myClickedPrefab);
+    }
+
+    // Essentially the same function as SetSafetyValue, but it changes GameObject's isActive value
+    // Called by UseButtonClicked function
+    public void SetActiveValue(GameObject myClickedPrefab)
+    {
+        if(isCurrentPrefabActive == false)
+        {
+            isCurrentPrefabActive = true;
+
+            if (myClickedPrefab.TryGetComponent(out EquipmentClass equipment))
+            {
+                equipment.IsActive = true;
+            }
+        }
+        else if(isCurrentPrefabActive == true)
+        {
+            isCurrentPrefabActive = false;
+
+            if (myClickedPrefab.TryGetComponent(out EquipmentClass equipment))
+            {
+                equipment.IsActive = false;
+            }
+        }
+        OnActiveValueChanged?.Invoke(myClickedPrefab);
     }
 
     // If isCurrentPrefabSafe is true, the currentPrefab sprite is changed to safe variant
