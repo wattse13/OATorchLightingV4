@@ -46,12 +46,11 @@ public class EquipmentClass : MonoBehaviour
     private bool _isSafe;
     [SerializeField]
     private bool _isActive;
-    // private bool _isActive;
     // private list _animations;
     // private list _sounds;
     // private sortingLayer _sortingLayer;
-    [SerializeField]
-    private Component _newCollider; // I don't think this is correct
+    //[SerializeField]
+    //private Component _newCollider; // I don't think this is correct
 
     #region Properties
     public string Name
@@ -102,17 +101,17 @@ public class EquipmentClass : MonoBehaviour
         }
     }
 
-    public Component NewCollider
-    {
-        get
-        {
-            return _newCollider;
-        }
-        set
-        {
-            _newCollider = value;
-        }
-    }
+    //public Component NewCollider
+    //{
+    //    get
+    //    {
+    //        return _newCollider;
+    //    }
+    //    set
+    //    {
+    //        _newCollider = value;
+    //    }
+    //}
 
     public Vector2 InitialPosition
     {
