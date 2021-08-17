@@ -133,8 +133,9 @@ public class SafetyStateController : MonoBehaviour
         {
             return;
         }
-        if(activeStates[previousID] == false)
+        if(activeStates[previousID] == false && isAllSafe == true)
         {
+            AllSafeConsequences();
             Debug.Log("Wrong!");
         }
         if (activeStates[previousID] == true && isAllSafe == false)
@@ -143,7 +144,7 @@ public class SafetyStateController : MonoBehaviour
         }
         if(activeStates[previousID] == true && isAllSafe == true)
         {
-            Debug.Log("correct!");
+            AllSafeConsequences();
         }
         //foreach (var item in activeStates)
         //{
@@ -151,14 +152,23 @@ public class SafetyStateController : MonoBehaviour
         //}
     }
 
+    // Determines result of incorrect activation order when all equipment is safe
     private void AllSafeConsequences()
     {
-        // Determines result of incorrect activation order when all equipment is safe
+        if(activeStates[1] && activeStates[2] == true)
+        {
+            Debug.Log("Looking Good");
+        }
+        else if(activeStates[1] == false && activeStates[2] == true)
+        {
+            Debug.Log("Incorrect order");
+        }
     }
 
+    // Determines result of incorrect activation order when some or all equipment is unsafe
     private void UnsafeConsequences()
     {
-        // Determines result of incorrect activation order when some or all equipment is unsafe
+        
     }
 
     #region Code Graveyard

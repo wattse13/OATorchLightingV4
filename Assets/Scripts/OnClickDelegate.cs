@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Attatched to the GameEvents GameObject
-// Was previously a part of the EquipmentClass
+// Attatched to the Main Camera
 public class OnClickDelegate : MonoBehaviour
 {
 
     // ClickMenuController is subscribed to this delegate event
     // EquipmentController is subscribed to this delegate event
     // InspectMenuContrller is subscribed to this delegate event
-    public delegate void ClickEvent(GameObject e);
+    public delegate void ClickEvent(GameObject equipment);
     public static event ClickEvent OnClicked;
+
+    [SerializeField] private Camera _camera;
 
     /* void OnMouseOver()
     {
@@ -24,7 +25,7 @@ public class OnClickDelegate : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 worldPoint = _camera.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero);
 
             if (hit.collider != null && hit.collider.TryGetComponent(out EquipmentClass equipment))

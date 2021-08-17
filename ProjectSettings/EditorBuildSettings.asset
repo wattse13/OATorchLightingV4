@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/OATorchLighting.unity
+    guid: e19c8cd4524f9f4458c1773972d0eccd
+  - enabled: 1
+    path: Assets/Scenes/UI.unity
+    guid: 7af4fd5040a05a54987ce866b0637b37
   m_configObjects: {}
