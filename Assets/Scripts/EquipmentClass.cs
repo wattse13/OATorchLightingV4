@@ -40,7 +40,7 @@ public class EquipmentClass : MonoBehaviour
     private string _useUnsafeDescr;
     [SerializeField]
     private int _initialScale;
-    [SerializeField] // Should later be removed so that _iD value is not accidentally changed
+    [SerializeField] // Should later be removed so that _iD value is not accidentally changed?
     private int _iD;
     [SerializeField]
     private bool _isSafe;
@@ -248,6 +248,34 @@ public class EquipmentClass : MonoBehaviour
         SetInitialValues();
     }
 
+    private void OnEnable()
+    {
+        ClickMenuController.OnInspectClicked += DisableColliders;
+        InspectMenuController.OnInspectMenuDeactivate += EnableColliders;
+    }
+
+    private void OnDisable()
+    {
+        ClickMenuController.OnInspectClicked -= DisableColliders;
+        InspectMenuController.OnInspectMenuDeactivate -= EnableColliders;
+    }
+
+    public void DisableColliders()
+    {
+        GetComponent<Collider2D>().enabled = false;
+    }
+
+    public void EnableColliders()
+    {
+        if(GetComponent<Collider2D>().enabled == true)
+        {
+            return;
+        }else
+        {
+            GetComponent<Collider2D>().enabled = true;
+        }
+    }
+
     private void SetInitialValues()
     {
         CurrentImage = UnsafeImage;
@@ -259,12 +287,4 @@ public class EquipmentClass : MonoBehaviour
         IsActive = false;
         // this.gameObject.GetComponent<Transform>().localScale = InitialScale;
     }
-
-    /* public EquipmentClass(string Name, Component NewCollider, Vector2 InitialPosition)
-    {
-        this.Name = Name;
-        // this.Image = Image;
-        this.NewCollider = NewCollider;
-        this.InitialPosition = InitialPosition;
-    }*/
 }

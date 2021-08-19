@@ -39,6 +39,11 @@ public class EquipmentController : MonoBehaviour
         OnClickDelegate.OnClicked += SetCurrentPrefab;
         OnClickDelegate.OnClicked += SetCurrentPrefabValues;
         // SafetyStateController.OnStatusChanged += SetSafetyValue;
+        ClickMenuController.OnInspectClicked += CallMenuFunctions;
+        InspectMenuController.OnInspectMenuActivate += ReplaceButtonClicked;
+        InspectMenuController.OnInspectMenuActivate += ChangeSprite;
+        InspectMenuController.OnInspectMenuDeactivate += ExitMenuFunctions;
+        InspectMenuController.OnUseMenuActivate += UseButtonClicked;
     }
 
     private void OnDisable()
@@ -46,6 +51,11 @@ public class EquipmentController : MonoBehaviour
         OnClickDelegate.OnClicked -= SetCurrentPrefab;
         OnClickDelegate.OnClicked -= SetCurrentPrefabValues;
         // SafetyStateController.OnStatusChanged -= SetSafetyValue;
+        ClickMenuController.OnInspectClicked -= CallMenuFunctions;
+        InspectMenuController.OnInspectMenuActivate -= ReplaceButtonClicked;
+        InspectMenuController.OnInspectMenuActivate -= ChangeSprite;
+        InspectMenuController.OnInspectMenuDeactivate -= ExitMenuFunctions;
+        InspectMenuController.OnUseMenuActivate -= UseButtonClicked;
     }
 
     // This method is called once a the OnMessageSent delegate event is triggered

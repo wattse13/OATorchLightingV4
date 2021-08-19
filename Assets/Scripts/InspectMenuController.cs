@@ -8,7 +8,7 @@ using UnityEngine;
 public class InspectMenuController : MonoBehaviour
 {
     private GameObject currentPrefab;
-    public GameObject blurLayer;
+    [SerializeField] private GameObject blurLayer;
     private GameObject inspectMenu;
     private GameObject useMenu;
 
@@ -35,15 +35,16 @@ public class InspectMenuController : MonoBehaviour
 
     // Delegates //
 
-    // Will be used to send a message when a GameObject's active status has been changed
-    // public delegate void ActiveStatusEvent(GameObject e);
-    // public static event ActiveStatusEvent OnActivate;
-
-    // Nothing currently subscribed to this delegate event
+    // EquipmentController is subscribed to this delegate event
+    // EquipmentClass is subscribed to this delegate event (Reenables colliders once Inspect/Use menu is deactivated)
     // Will be used to send a message when inspect menu has been activated
-    // Not sure this is necessary
-    // public delegate void InspectMenuEvent(GameObject e);
-    // public static event InspectMenuEvent OnInspectMenuActivate;
+    public delegate void InspectMenuEvent();
+    public static event InspectMenuEvent OnInspectMenuActivate;
+    public static event InspectMenuEvent OnInspectMenuDeactivate; // Is this legit?
+
+    // EquipmentController is subscribed to this delegate event
+    public delegate void UseMenuEvent();
+    public static event UseMenuEvent OnUseMenuActivate;
 
     private void Awake()
     {
@@ -195,6 +196,21 @@ public class InspectMenuController : MonoBehaviour
     public void RemoveBlur()
     {
         blurLayer.SetActive(false);
+    }
+
+    public void ReplaceButtonClick()
+    {
+        OnInspectMenuActivate?.Invoke();
+    }
+
+    public void ExitBackButtonClick()
+    {
+        OnInspectMenuDeactivate?.Invoke();
+    }
+
+    public void UseButtonClick()
+    {
+        OnUseMenuActivate?.Invoke();
     }
 
     //public void ValueTest()

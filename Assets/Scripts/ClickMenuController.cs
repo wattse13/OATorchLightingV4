@@ -27,10 +27,16 @@ public class ClickMenuController : MonoBehaviour
 
     private RectTransform clickMenuTransform;
 
-    // GameEvents is subscribed to this delegate event
-    // Will be used to send a message when a GameObject's active status has been changed
-    // public delegate void EquipActivateEvent(GameObject e);
-    // public static event EquipActivateEvent OnActiveStatusChanged;
+    // EquipmentController is subscribed to this delegate event
+    // Will be used to send a message that the Inspect/Use menu has opened
+    //public delegate void ClickMenuEvent();
+    //public static event ClickMenuEvent OnClickMenu;
+
+    // EquipmentController is subscribed to this delegate event
+    // EquipmentClass is subscribed to this delegate event (disables colliders when Inspect/Use menu is open)
+    // Invoked when ClickMenu transitions over to Inspect/UseMenu
+    public delegate void InspectButtonEvent();
+    public static event InspectButtonEvent OnInspectClicked;
 
     private void OnEnable()
     {
@@ -91,5 +97,10 @@ public class ClickMenuController : MonoBehaviour
                 clickMenuTransform.position = new Vector2(equipment.InitialPosition.x - offsetLeft, 0);
             }
         }
+    }
+
+    public void InspectButtonClick()
+    {
+        OnInspectClicked?.Invoke();
     }
 }

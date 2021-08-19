@@ -5,7 +5,6 @@ using UnityEngine;
 // Attatched to the Main Camera
 public class OnClickDelegate : MonoBehaviour
 {
-
     // ClickMenuController is subscribed to this delegate event
     // EquipmentController is subscribed to this delegate event
     // InspectMenuContrller is subscribed to this delegate event

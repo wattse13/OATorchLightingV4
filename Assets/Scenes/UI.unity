@@ -224,8 +224,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: CallMenuFunctions
+      - m_Target: {fileID: 297335402}
+        m_MethodName: InspectButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -235,7 +235,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 281465234}
         m_MethodName: AddBackgroundBlur
         m_Mode: 1
         m_Arguments:
@@ -246,7 +246,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 281465234}
         m_MethodName: SetUseText
         m_Mode: 1
         m_Arguments:
@@ -330,7 +330,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 211.3, y: 225}
+  m_AnchoredPosition: {x: 141.99997, y: 225}
   m_SizeDelta: {x: 49.345016, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &19269461
@@ -387,8 +387,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: ExitMenuFunctions
+      - m_Target: {fileID: 281465234}
+        m_MethodName: RemoveBlur
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -398,8 +398,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: RemoveBlur
+      - m_Target: {fileID: 281465234}
+        m_MethodName: ExitBackButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -484,8 +484,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1712.3916, y: 500}
+  m_AnchoredPosition: {x: -0, y: 0}
+  m_SizeDelta: {x: 892.8447, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &31630266
 MonoBehaviour:
@@ -581,8 +581,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.3, y: 2.2}
-  m_SizeDelta: {x: 372.65875, y: 207.48795}
+  m_AnchoredPosition: {x: -0.3, y: 17.1}
+  m_SizeDelta: {x: 323.6978, y: 263.61392}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &36958819
 MonoBehaviour:
@@ -630,8 +630,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1028,8 +1028,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: UseButtonClicked
+      - m_Target: {fileID: 281465234}
+        m_MethodName: UseButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1205,8 +1205,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 345, y: 0}
-  m_SizeDelta: {x: 500, y: 500}
+  m_AnchoredPosition: {x: 271.1, y: 0}
+  m_SizeDelta: {x: 352.29095, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &514954243
 MonoBehaviour:
@@ -1373,8 +1373,8 @@ SpriteRenderer:
   m_SortingLayerID: 1805476363
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 99ea4a9d45b863f498d61eddcd37323d, type: 3}
-  m_Color: {r: 0.21960784, g: 0.21960784, b: 0.21960784, a: 0.39215687}
+  m_Sprite: {fileID: 21300000, guid: 210bd56b42eee854386c6366087f70db, type: 3}
+  m_Color: {r: 0.21960784, g: 0.21960784, b: 0.21960784, a: 0.8784314}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1570,8 +1570,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 345, y: 0}
-  m_SizeDelta: {x: 500, y: 500}
+  m_AnchoredPosition: {x: 271.1, y: 0}
+  m_SizeDelta: {x: 352.29095, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &947592994
 MonoBehaviour:
@@ -1958,19 +1958,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: ReplaceButtonClicked
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: ChangeSprite
+      - m_Target: {fileID: 281465234}
+        m_MethodName: ReplaceButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2328,8 +2317,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: ExitMenuFunctions
+      - m_Target: {fileID: 281465234}
+        m_MethodName: RemoveBlur
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2339,8 +2328,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: RemoveBlur
+      - m_Target: {fileID: 281465234}
+        m_MethodName: ExitBackButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2623,8 +2612,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: CallMenuFunctions
+      - m_Target: {fileID: 297335402}
+        m_MethodName: InspectButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2634,7 +2623,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 281465234}
         m_MethodName: AddBackgroundBlur
         m_Mode: 1
         m_Arguments:
@@ -2645,7 +2634,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 281465234}
         m_MethodName: SetInspectText
         m_Mode: 1
         m_Arguments:
@@ -2833,8 +2822,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: ExitMenuFunctions
+      - m_Target: {fileID: 281465234}
+        m_MethodName: RemoveBlur
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2844,8 +2833,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: RemoveBlur
+      - m_Target: {fileID: 281465234}
+        m_MethodName: ExitBackButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3006,7 +2995,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 211.3, y: 225}
+  m_AnchoredPosition: {x: 142, y: 225}
   m_SizeDelta: {x: 49.345016, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1904106354
@@ -3063,8 +3052,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: ExitMenuFunctions
+      - m_Target: {fileID: 281465234}
+        m_MethodName: RemoveBlur
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3074,8 +3063,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: RemoveBlur
+      - m_Target: {fileID: 281465234}
+        m_MethodName: ExitBackButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3450,8 +3439,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.3, y: 2.2}
-  m_SizeDelta: {x: 372.65875, y: 207.48795}
+  m_AnchoredPosition: {x: -0.3, y: 17.1}
+  m_SizeDelta: {x: 323.6978, y: 263.61392}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2075223140
 MonoBehaviour:
@@ -3499,8 +3488,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
