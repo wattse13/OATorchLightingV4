@@ -540,7 +540,12 @@ PrefabInstance:
     - target: {fileID: 8311256858625991375, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: m_Name
-      value: Oxygen Regulator
+      value: Oxygen Regulator 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _iD
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
@@ -569,6 +574,31 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 47dd44e1911f3b44bbe59b0758a572f8,
         type: 3}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _useSafeDescr
+      value: Oxygen regulator should be set to about 10 PSI. Open valve slowly to
+        prevent regulator burnout.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _useUnsafeDescr
+      value: 'Using the incorrect regulator can cause regulator burn out. Do you
+        want a fire on top of a cylinder of highly pressurized and flammable gas?
+        No. No one wants that. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _descriptionSafe
+      value: Ready to use! Lowers gas pressure to a suitable level for the welding
+        torch. Should be activated after the oxygen cylinder.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _descriptionUnsafe
+      value: 'This regulator is meant for an acetylene cylinder. Using it to regulate
+        oxygen is dangerous and could lead to a regulator burnout. '
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2143f8153635c64ab9544c693cad585, type: 3}
 --- !u!1 &140435936
@@ -614,7 +644,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &145687815
 GameObject:
@@ -912,6 +942,177 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 336768148}
   m_CullTransparentMesh: 0
+--- !u!1001 &414525245
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 283520662454819828, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 4.559594
+      objectReference: {fileID: 0}
+    - target: {fileID: 283520662454819828, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 19.324791
+      objectReference: {fileID: 0}
+    - target: {fileID: 283520662454819828, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -0.012069702
+      objectReference: {fileID: 0}
+    - target: {fileID: 283520662454819828, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0.012779236
+      objectReference: {fileID: 0}
+    - target: {fileID: 283520662454819828, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 4.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 283520662454819828, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 19.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2241555
+      objectReference: {fileID: 0}
+    - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2241555
+      objectReference: {fileID: 0}
+    - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6382906208691776285, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: af4395bbfc84fa7409e72c1f2f32dbaa,
+        type: 3}
+    - target: {fileID: 8311256858625991375, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_Name
+      value: Striker 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _iD
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _name
+      value: Striker
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _safeImage
+      value: 
+      objectReference: {fileID: 21300000, guid: af4395bbfc84fa7409e72c1f2f32dbaa,
+        type: 3}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _position.x
+      value: -6.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _position.y
+      value: -2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _unsafeImage
+      value: 
+      objectReference: {fileID: 21300000, guid: c67cbb307c608f544a61169bc10e96b9,
+        type: 3}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _useSafeDescr
+      value: Unlike a lighter, a friction striker cannot explode and there is no
+        risk of blowing out the flame.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _useUnsafeDescr
+      value: Generally, holding something that can explode is a bad idea. An even
+        worse idea is holding something that can explode while introducing it to
+        an ignition source.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _descriptionSafe
+      value: Ready to use! Creates sparks through friction. Should be activated last.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _descriptionUnsafe
+      value: Trying to use a lighter is a bad idea. If the torch flame hits the lighter
+        it can explode. Plus, the high pressure gas can blow out the flame.
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b2143f8153635c64ab9544c693cad585, type: 3}
 --- !u!1 &444430754
 GameObject:
   m_ObjectHideFlags: 0
@@ -1494,7 +1695,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &653357375 stripped
 GameObject:
@@ -1509,7 +1710,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 653357375}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -1802,6 +2003,523 @@ PolygonCollider2D:
       - {x: 0.31, y: -7.1749997}
       - {x: 0.52, y: -7.065}
       - {x: 0.66999996, y: -6.9649997}
+--- !u!1 &744823042 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8311256858625991375, guid: b2143f8153635c64ab9544c693cad585,
+    type: 3}
+  m_PrefabInstance: {fileID: 2093938481}
+  m_PrefabAsset: {fileID: 0}
+--- !u!60 &744823043
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744823042}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 10.44, y: 19.22}
+    newSize: {x: 2, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 2.05, y: -9.48}
+      - {x: 2.26, y: -9.28}
+      - {x: 2.36, y: -9.13}
+      - {x: 2.48, y: -8.889999}
+      - {x: 2.53, y: -8.73}
+      - {x: 2.59, y: -8.47}
+      - {x: 2.6, y: -8.349999}
+      - {x: 2.62, y: -8.2}
+      - {x: 2.6299999, y: -8.099999}
+      - {x: 2.6399999, y: -7.98}
+      - {x: 2.6499999, y: -7.77}
+      - {x: 2.6499999, y: -7.33}
+      - {x: 2.6399999, y: -7.0899997}
+      - {x: 2.6299999, y: -6.93}
+      - {x: 2.61, y: -6.68}
+      - {x: 2.59, y: -6.48}
+      - {x: 2.57, y: -6.2999997}
+      - {x: 2.54, y: -6.0699997}
+      - {x: 2.51, y: -5.8599997}
+      - {x: 2.47, y: -5.6099997}
+      - {x: 2.4299998, y: -5.38}
+      - {x: 2.3899999, y: -5.17}
+      - {x: 2.37, y: -5.1099997}
+      - {x: 2.32, y: -5.0099998}
+      - {x: 2.25, y: -4.8399997}
+      - {x: 2.1499999, y: -4.54}
+      - {x: 2.12, y: -4.43}
+      - {x: 2.04, y: -4.0499997}
+      - {x: 2.01, y: -3.9499998}
+      - {x: 1.9399999, y: -3.58}
+      - {x: 1.91, y: -3.3899999}
+      - {x: 1.8499999, y: -2.96}
+      - {x: 1.8, y: -2.51}
+      - {x: 1.79, y: -2.4099998}
+      - {x: 1.77, y: -2.19}
+      - {x: 1.75, y: -1.9399999}
+      - {x: 1.74, y: -1.93}
+      - {x: 1.73, y: -1.65}
+      - {x: 1.7199999, y: -1.49}
+      - {x: 1.7099999, y: -1.31}
+      - {x: 1.6999999, y: -1.11}
+      - {x: 1.6899999, y: -0.88}
+      - {x: 1.68, y: -0.87}
+      - {x: 1.68, y: -0.59}
+      - {x: 1.67, y: -0.58}
+      - {x: 1.67, y: -0.19}
+      - {x: 1.66, y: -0.17999999}
+      - {x: 1.66, y: 1.2099999}
+      - {x: 1.67, y: 1.22}
+      - {x: 1.67, y: 1.63}
+      - {x: 1.68, y: 1.64}
+      - {x: 1.68, y: 1.93}
+      - {x: 1.6899999, y: 1.9399999}
+      - {x: 1.6999999, y: 2.19}
+      - {x: 1.7099999, y: 2.4099998}
+      - {x: 1.7199999, y: 2.6}
+      - {x: 1.73, y: 2.9299998}
+      - {x: 1.74, y: 2.9399998}
+      - {x: 1.75, y: 3.09}
+      - {x: 1.76, y: 3.23}
+      - {x: 1.79, y: 3.62}
+      - {x: 1.8299999, y: 4.06}
+      - {x: 1.8499999, y: 4.2599998}
+      - {x: 1.88, y: 4.5299997}
+      - {x: 1.9499999, y: 5.1}
+      - {x: 2, y: 5.45}
+      - {x: 2.02, y: 5.5699997}
+      - {x: 2.06, y: 5.8199997}
+      - {x: 2.1699998, y: 6.41}
+      - {x: 2.24, y: 6.73}
+      - {x: 2.31, y: 7.02}
+      - {x: 2.37, y: 7.25}
+      - {x: 2.3999999, y: 7.35}
+      - {x: 2.5, y: 7.6699996}
+      - {x: 2.56, y: 7.8399997}
+      - {x: 2.69, y: 8.16}
+      - {x: 2.69, y: 8.179999}
+      - {x: 2.82, y: 8.41}
+      - {x: 2.95, y: 8.62}
+      - {x: 2.95, y: 8.63}
+      - {x: 3.11, y: 8.78}
+      - {x: 3.25, y: 8.87}
+      - {x: 3.36, y: 8.929999}
+      - {x: 3.49, y: 8.97}
+      - {x: 3.6, y: 9.01}
+      - {x: 3.77, y: 9.04}
+      - {x: 3.81, y: 9}
+      - {x: 4.5, y: 9}
+      - {x: 4.5099998, y: 9.01}
+      - {x: 4.7999997, y: 9.01}
+      - {x: 4.8199997, y: 8.99}
+      - {x: 5.18, y: 8.99}
+      - {x: 5.22, y: 9.0199995}
+      - {x: 5.22, y: 9.58}
+      - {x: 5.2, y: 9.61}
+      - {x: 4.12, y: 9.61}
+      - {x: 4.0699997, y: 9.599999}
+      - {x: 3.81, y: 9.599999}
+      - {x: 3.74, y: 9.53}
+      - {x: 3.6499999, y: 9.5199995}
+      - {x: 3.4299998, y: 9.49}
+      - {x: 3.25, y: 9.42}
+      - {x: 3.1999998, y: 9.4}
+      - {x: 2.96, y: 9.28}
+      - {x: 2.87, y: 9.22}
+      - {x: 2.78, y: 9.15}
+      - {x: 2.54, y: 8.9}
+      - {x: 2.4299998, y: 8.73}
+      - {x: 2.37, y: 8.639999}
+      - {x: 2.26, y: 8.41}
+      - {x: 2.19, y: 8.25}
+      - {x: 2.11, y: 8.05}
+      - {x: 2.04, y: 7.89}
+      - {x: 1.9599999, y: 7.6099997}
+      - {x: 1.93, y: 7.5099998}
+      - {x: 1.8499999, y: 7.22}
+      - {x: 1.8299999, y: 7.14}
+      - {x: 1.7099999, y: 6.62}
+      - {x: 1.6899999, y: 6.5299997}
+      - {x: 1.61, y: 6.12}
+      - {x: 1.56, y: 5.83}
+      - {x: 1.52, y: 5.58}
+      - {x: 1.4699999, y: 5.24}
+      - {x: 1.4399999, y: 5.0099998}
+      - {x: 1.4, y: 4.69}
+      - {x: 1.36, y: 4.33}
+      - {x: 1.3299999, y: 4.0299997}
+      - {x: 1.31, y: 3.81}
+      - {x: 1.28, y: 3.4499998}
+      - {x: 1.25, y: 3.03}
+      - {x: 1.24, y: 2.71}
+      - {x: 1.23, y: 2.7}
+      - {x: 1.22, y: 2.51}
+      - {x: 1.2099999, y: 2.31}
+      - {x: 1.1999999, y: 2.07}
+      - {x: 1.1899999, y: 1.8}
+      - {x: 1.1899999, y: 1.4599999}
+      - {x: 1.18, y: 1.4499999}
+      - {x: 1.18, y: 0.84999996}
+      - {x: 1.17, y: 0.84}
+      - {x: 1.17, y: 0.17999999}
+      - {x: 1.18, y: 0.17}
+      - {x: 1.18, y: -0.41}
+      - {x: 1.1899999, y: -0.42}
+      - {x: 1.1899999, y: -0.75}
+      - {x: 1.1999999, y: -1.01}
+      - {x: 1.2099999, y: -1.23}
+      - {x: 1.22, y: -1.42}
+      - {x: 1.23, y: -1.5899999}
+      - {x: 1.25, y: -1.89}
+      - {x: 1.26, y: -2.02}
+      - {x: 1.28, y: -2.26}
+      - {x: 1.3, y: -2.48}
+      - {x: 1.3199999, y: -2.6799998}
+      - {x: 1.35, y: -2.9399998}
+      - {x: 1.36, y: -3.03}
+      - {x: 1.4, y: -3.33}
+      - {x: 1.4399999, y: -3.59}
+      - {x: 1.51, y: -3.99}
+      - {x: 1.5699999, y: -4.2799997}
+      - {x: 1.5899999, y: -4.37}
+      - {x: 1.63, y: -4.52}
+      - {x: 1.68, y: -4.71}
+      - {x: 1.78, y: -5}
+      - {x: 1.88, y: -5.24}
+      - {x: 1.91, y: -5.3599997}
+      - {x: 1.9399999, y: -5.46}
+      - {x: 2, y: -5.7999997}
+      - {x: 2.02, y: -5.93}
+      - {x: 2.08, y: -6.37}
+      - {x: 2.1, y: -6.5499997}
+      - {x: 2.12, y: -6.75}
+      - {x: 2.1299999, y: -6.87}
+      - {x: 2.1399999, y: -7.0099998}
+      - {x: 2.1499999, y: -7.2}
+      - {x: 2.1599998, y: -7.21}
+      - {x: 2.1599998, y: -7.8799996}
+      - {x: 2.1499999, y: -7.89}
+      - {x: 2.1399999, y: -8.03}
+      - {x: 2.11, y: -8.29}
+      - {x: 2.07, y: -8.5}
+      - {x: 1.99, y: -8.75}
+      - {x: 1.99, y: -8.7699995}
+      - {x: 1.88, y: -8.96}
+      - {x: 1.77, y: -9.07}
+      - {x: 1.63, y: -9.13}
+      - {x: 1.5699999, y: -9.139999}
+      - {x: 1.39, y: -9.13}
+      - {x: 1.16, y: -9.07}
+      - {x: 1.0799999, y: -9.03}
+      - {x: 0.76, y: -8.91}
+      - {x: 0.59999996, y: -8.84}
+      - {x: 0.28, y: -8.75}
+      - {x: 0.089999996, y: -8.7}
+      - {x: -0.01, y: -8.679999}
+      - {x: -0.16, y: -8.66}
+      - {x: -0.38, y: -8.66}
+      - {x: -0.48, y: -8.7}
+      - {x: -0.62, y: -8.76}
+      - {x: -0.76, y: -8.809999}
+      - {x: -0.90999997, y: -8.83}
+      - {x: -0.91999996, y: -8.84}
+      - {x: -1.22, y: -8.84}
+      - {x: -1.23, y: -8.83}
+      - {x: -1.4699999, y: -8.809999}
+      - {x: -1.67, y: -8.79}
+      - {x: -1.76, y: -8.78}
+      - {x: -2.1, y: -8.74}
+      - {x: -2.62, y: -8.67}
+      - {x: -2.9399998, y: -8.62}
+      - {x: -3.28, y: -8.559999}
+      - {x: -3.6399999, y: -8.49}
+      - {x: -4.08, y: -8.389999}
+      - {x: -4.36, y: -8.309999}
+      - {x: -4.48, y: -8.2699995}
+      - {x: -4.62, y: -8.2}
+      - {x: -4.63, y: -8.099999}
+      - {x: -4.67, y: -7.97}
+      - {x: -4.71, y: -7.68}
+      - {x: -4.72, y: -7.58}
+      - {x: -4.73, y: -7.47}
+      - {x: -4.74, y: -7.33}
+      - {x: -4.75, y: -7.0899997}
+      - {x: -4.7599998, y: -7.08}
+      - {x: -4.7599998, y: -6.73}
+      - {x: -4.75, y: -6.72}
+      - {x: -4.74, y: -6.5099998}
+      - {x: -4.71, y: -6.22}
+      - {x: -4.65, y: -5.9}
+      - {x: -4.63, y: -5.71}
+      - {x: -4.62, y: -5.6}
+      - {x: -4.61, y: -5.48}
+      - {x: -4.6, y: -5.33}
+      - {x: -4.5899997, y: -5.13}
+      - {x: -4.5899997, y: -4.56}
+      - {x: -4.6, y: -4.5099998}
+      - {x: -4.63, y: -4.44}
+      - {x: -4.72, y: -4.35}
+      - {x: -4.79, y: -4.33}
+      - {x: -4.93, y: -4.3399997}
+      - {x: -5.0499997, y: -4.45}
+      - {x: -5.0699997, y: -4.5}
+      - {x: -5.08, y: -4.54}
+      - {x: -5.08, y: -4.71}
+      - {x: -5.0699997, y: -4.93}
+      - {x: -5.08, y: -4.94}
+      - {x: -5.08, y: -5.22}
+      - {x: -5.0899997, y: -5.23}
+      - {x: -5.1, y: -5.4}
+      - {x: -5.1099997, y: -5.5299997}
+      - {x: -5.13, y: -5.81}
+      - {x: -5.14, y: -5.8199997}
+      - {x: -5.19, y: -6.08}
+      - {x: -5.21, y: -6.22}
+      - {x: -5.22, y: -6.31}
+      - {x: -5.22, y: -7.56}
+      - {x: -5.2, y: -7.75}
+      - {x: -5.18, y: -7.91}
+      - {x: -5.15, y: -8.099999}
+      - {x: -5.14, y: -8.2}
+      - {x: -5.0699997, y: -8.4}
+      - {x: -5.02, y: -8.51}
+      - {x: -4.89, y: -8.63}
+      - {x: -4.74, y: -8.7}
+      - {x: -4.61, y: -8.75}
+      - {x: -4.52, y: -8.78}
+      - {x: -4.24, y: -8.86}
+      - {x: -4.16, y: -8.88}
+      - {x: -3.81, y: -8.96}
+      - {x: -3.46, y: -9.03}
+      - {x: -3.24, y: -9.07}
+      - {x: -3.12, y: -9.09}
+      - {x: -2.6799998, y: -9.16}
+      - {x: -2.3999999, y: -9.2}
+      - {x: -2.1699998, y: -9.23}
+      - {x: -1.74, y: -9.28}
+      - {x: -1.43, y: -9.309999}
+      - {x: -1.31, y: -9.32}
+      - {x: -1.0799999, y: -9.33}
+      - {x: -1.02, y: -9.33}
+      - {x: -0.83, y: -9.32}
+      - {x: -0.63, y: -9.29}
+      - {x: -0.48, y: -9.24}
+      - {x: -0.28, y: -9.15}
+      - {x: -0.14, y: -9.16}
+      - {x: -0.03, y: -9.179999}
+      - {x: 0.12, y: -9.22}
+      - {x: 0.44, y: -9.32}
+      - {x: 0.55, y: -9.36}
+      - {x: 0.69, y: -9.41}
+      - {x: 1.09, y: -9.559999}
+      - {x: 1.18, y: -9.59}
+      - {x: 1.27, y: -9.61}
+      - {x: 1.77, y: -9.61}
+      - {x: 1.86, y: -9.58}
+      - {x: 1.9699999, y: -9.53}
+--- !u!1001 &780124782
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 283520662454819828, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 3.2759552
+      objectReference: {fileID: 0}
+    - target: {fileID: 283520662454819828, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 19.229591
+      objectReference: {fileID: 0}
+    - target: {fileID: 283520662454819828, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.09942198
+      objectReference: {fileID: 0}
+    - target: {fileID: 283520662454819828, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.005458832
+      objectReference: {fileID: 0}
+    - target: {fileID: 283520662454819828, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 3.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 283520662454819828, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 19.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.39001164
+      objectReference: {fileID: 0}
+    - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.39001164
+      objectReference: {fileID: 0}
+    - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6382906208691776285, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bac218afa46fb864da9da4b31d09516c,
+        type: 3}
+    - target: {fileID: 6382906208691776285, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6382906208691776285, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6382906208691776285, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1797879047
+      objectReference: {fileID: 0}
+    - target: {fileID: 8311256858625991375, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: m_Name
+      value: OA Torch 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _iD
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _name
+      value: Oxygen Acetylene Torch
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _safeImage
+      value: 
+      objectReference: {fileID: 21300000, guid: bac218afa46fb864da9da4b31d09516c,
+        type: 3}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _position.x
+      value: -3.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _position.y
+      value: 0.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _unsafeImage
+      value: 
+      objectReference: {fileID: 21300000, guid: c63fb3dceaba287479252e9eec79ebd3,
+        type: 3}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _useSafeDescr
+      value: Acetylene valve should be opened first. After lighting with the striker,
+        adjust the flame until it burns without releasing black smoke. Then put on
+        safety glasses and open the oxygen valve. (Not currently possible in this
+        version)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _useUnsafeDescr
+      value: There are currently no flashback arrestors installed. Even if there
+        are already flashback arrestors installed on the hoses, a second set installed
+        on the torch is even better.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _descriptionSafe
+      value: Ready to use! Welding torch valves control final gas mixture. Should
+        be activated after the acetylene hose.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _descriptionUnsafe
+      value: When it comes to preventing a fire from reaching cylinders of highly
+        compressed and flammable gas, redundencies are a good idea. Use flashback
+        arrestors!
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b2143f8153635c64ab9544c693cad585, type: 3}
 --- !u!1 &793987903
 GameObject:
   m_ObjectHideFlags: 0
@@ -1881,7 +2599,7 @@ Transform:
   m_LocalScale: {x: 4.819428, y: 2.0685036, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &857716246
 GameObject:
@@ -2394,7 +3112,7 @@ Transform:
   m_LocalScale: {x: 0.9115261, y: 0.911526, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1049847518
 GameObject:
@@ -2994,7 +3712,7 @@ PrefabInstance:
     - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.7
+      value: 0.6886024
       objectReference: {fileID: 0}
     - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
@@ -3004,7 +3722,7 @@ PrefabInstance:
     - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.207
+      value: -0.146
       objectReference: {fileID: 0}
     - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
@@ -3075,7 +3793,12 @@ PrefabInstance:
     - target: {fileID: 8311256858625991375, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: m_Name
-      value: Acetylene Hose
+      value: Acetylene Hose 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _iD
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
@@ -3091,7 +3814,7 @@ PrefabInstance:
     - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: _position.x
-      value: -0.207
+      value: -0.146
       objectReference: {fileID: 0}
     - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
@@ -3102,8 +3825,38 @@ PrefabInstance:
         type: 3}
       propertyPath: _unsafeImage
       value: 
-      objectReference: {fileID: 21300000, guid: fe5c6e675cf6eaa469755106c869d488,
+      objectReference: {fileID: 21300000, guid: d00ddb3379de8cf4da3ed85240c99be1,
         type: 3}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _currentImage
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _useSafeDescr
+      value: Carries acetylene gas from cylinder to torch. Technically, there is
+        not a way to 'activate' a hose, but this project is still a work in progress.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _useUnsafeDescr
+      value: 'There are no flashback arrestors to stop a potential fire from reaching
+        the cylinder of highly compressed and flammable gas. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _descriptionSafe
+      value: Ready to use! Flashback arrestors help prevent fire from traveling back
+        into the gas cylinders. Should be activated after the oxygen hose.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _descriptionUnsafe
+      value: There are no flashback arrestors installed and it looks like someon
+        tried to fix a leak with some tape. Gas leaking out of places it shouldn't
+        is never good.
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2143f8153635c64ab9544c693cad585, type: 3}
 --- !u!1 &1471608779
@@ -3479,7 +4232,7 @@ Transform:
   m_Children:
   - {fileID: 454366819}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1543511756
 GameObject:
@@ -3524,7 +4277,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1544880228
 GameObject:
@@ -3785,7 +4538,12 @@ PrefabInstance:
     - target: {fileID: 8311256858625991375, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: m_Name
-      value: Acetylene Regulator
+      value: Acetylene Regulator 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _iD
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
@@ -3814,6 +4572,32 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: ee74feb591ba9144d85b314fa1b48c06,
         type: 3}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _useSafeDescr
+      value: 'Acetylene should be used at pressures below 15 PSI. Anything higher
+        can cause a dissociative explosion. Set the regulator to 10 PSI. Open the
+        valve slowly to prevent a regulator burnout. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _useUnsafeDescr
+      value: 'Using the incorrect regulator can cause regulator burn out. Do you
+        want a fire on top of a cylinder of highly pressurized and flammable gas?
+        No. No one wants that. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _descriptionSafe
+      value: Ready for use! Lowers gas pressure to a suitable level for use by the
+        welding torch. Should be activated after the acetylene cylinder.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _descriptionUnsafe
+      value: 'This regulator is meant for an oxygen cylinder. Using it to regulate
+        acetylene is dangerous and could lead to a regulator burnout. '
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2143f8153635c64ab9544c693cad585, type: 3}
 --- !u!1 &1667346690
@@ -4648,6 +5432,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 283520662454819828, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 283520662454819828, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 10.44
       objectReference: {fileID: 0}
@@ -4664,22 +5453,22 @@ PrefabInstance:
     - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.7
+      value: 0.8974047
       objectReference: {fileID: 0}
     - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.4
+      value: 0.42621064
       objectReference: {fileID: 0}
     - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.17
+      value: 1.139
       objectReference: {fileID: 0}
     - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.99
+      value: -1.242
       objectReference: {fileID: 0}
     - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
@@ -4745,7 +5534,12 @@ PrefabInstance:
     - target: {fileID: 8311256858625991375, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: m_Name
-      value: Oxygen Hose
+      value: Oxygen Hose 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _iD
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
@@ -4761,19 +5555,44 @@ PrefabInstance:
     - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: _position.x
-      value: 2.17
+      value: 1.139
       objectReference: {fileID: 0}
     - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: _position.y
-      value: -0.99
+      value: -1.242
       objectReference: {fileID: 0}
     - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: _unsafeImage
       value: 
-      objectReference: {fileID: 21300000, guid: 29a2af042d15bed4691afa7d9e085d4f,
+      objectReference: {fileID: 21300000, guid: 018ae19d14b8d43409611d6120f6d402,
         type: 3}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _useSafeDescr
+      value: Carries oxygen gas from cylinder to torch. Technically, there is not
+        a way to 'activate' a hose, but this project is still a work in progress.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _useUnsafeDescr
+      value: 'There are no flashback arrestors to stop a potential fire from reaching
+        the cylinder of highly compressed and flammable gas. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _descriptionSafe
+      value: Ready to use! Flashback arrestors help prevent fire from traveling back
+        into the gas cylinders. Should be activated after the acetylene regulator.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
+        type: 3}
+      propertyPath: _descriptionUnsafe
+      value: There are no flashback arrestors installed and it looks like someon
+        tried to fix a leak with some tape. Gas leaking out of places it shouldn't
+        is never good.
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2143f8153635c64ab9544c693cad585, type: 3}
 --- !u!1001 &2113801918
@@ -4932,12 +5751,12 @@ PrefabInstance:
     - target: {fileID: 8311256858625991375, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: m_Name
-      value: Acetylene Cylinder 2
+      value: Acetylene Cylinder 3
       objectReference: {fileID: 0}
     - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: _iD
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
@@ -4969,29 +5788,31 @@ PrefabInstance:
     - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: _useSafeDescr
-      value: Stores lots of oxygen at high pressure. It is dent free and ready to
-        use.
+      value: The acetylene cylinder should only be turned on about 3/4's of a turn.
+        This allows for a quick shut off if a fire breaks out.
       objectReference: {fileID: 0}
     - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: _useUnsafeDescr
-      value: Stores lots of oxygen at high pressure. Using it in this state is not
-        a good idea.
+      value: 'Do not use an oxygen regulator on an acetylene gas cylinder. It can
+        cause a regulator burnout. '
       objectReference: {fileID: 0}
     - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: _descriptionSafe
-      value: This Oxygen Cylinder is clean and undamaged.
+      value: Ready for use! Stores acetylene gas at a high pressure. Should be activated
+        after the oxygen regulator.
       objectReference: {fileID: 0}
     - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: _descriptionUnsafe
-      value: This Oxygen Cylinder is dented and burned.
+      value: This acetylene cylinder is dented and burned. Using it in this condition
+        could cause a deadly explosion.
       objectReference: {fileID: 0}
     - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: _descriptionCurrent
-      value: Yee hee hee
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2143f8153635c64ab9544c693cad585, type: 3}
@@ -5486,27 +6307,31 @@ PrefabInstance:
     - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: _useSafeDescr
-      value: Stores lots of oxygen at high pressure. It is clean and ready to use.
+      value: The Oxygen cylinder should always be either completely on or off. Open
+        slowly to avoid a regulator burn out.
       objectReference: {fileID: 0}
     - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: _useUnsafeDescr
-      value: Stores lots of oxygen at high pressure. Using it in this state is dangerous.
+      value: Dents and burns can cause weak points in the cylinder body. Using it
+        in this state is dangerous.
       objectReference: {fileID: 0}
     - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: _descriptionSafe
-      value: This Oxygen Cylinder is clean and undamaged.
+      value: Ready for use! Stores a lot of oxygen at a high pressure. Should be
+        activated first.
       objectReference: {fileID: 0}
     - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: _descriptionUnsafe
-      value: This Oxygen Cylinder is dented and burned.
+      value: This Oxygen Cylinder is dented and burned. Using it in this condition
+        could cause a deadly explosion.
       objectReference: {fileID: 0}
     - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: _descriptionCurrent
-      value: Yah ha ha
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2143f8153635c64ab9544c693cad585, type: 3}

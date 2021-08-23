@@ -6,7 +6,9 @@ using UnityEngine;
 public class SafetyStateController : MonoBehaviour
 {
     Dictionary<int, bool> safetyStates = new Dictionary<int, bool>();
-    Dictionary<int, bool> activeStates = new Dictionary<int, bool>();
+    Dictionary<int, bool> ActiveStatesCorrect = new Dictionary<int, bool>();
+    List<int> CurrentActiveEquipment = new List<int>();
+    List<int> ActiveStatesPlayer = new List<int>();
 
     private int currentID;
     private int previousID;
@@ -26,11 +28,25 @@ public class SafetyStateController : MonoBehaviour
     {
         // Integer key must correspond to GameObject ID
         // Very Important Key integer matches GameObject ID integer
-        safetyStates.Add(1, false); // Corresponds to Cylinder 1
-        safetyStates.Add(2, false); // Corresponds to Cylinder 2
+        // This doesn't scale well
+        // Could use a for loop, but would need to figure out some way to keep correct order
+        safetyStates.Add(1, false); // Corresponds to Oxygen Cylinder
+        safetyStates.Add(2, false); // Corresponds to Oxygen Regulator
+        safetyStates.Add(3, false); // Corresponds to Acetylene Cylinder
+        safetyStates.Add(4, false); // Corresponds to Acetylene Regulator
+        safetyStates.Add(5, false); // Corresponds to Oxygen Hose
+        safetyStates.Add(6, false); // Corresponds to Acetylene Hose
+        safetyStates.Add(7, false); // Corresponds to OA torch
+        safetyStates.Add(8, false); // Corresponds to Striker
 
-        activeStates.Add(1, false); // Corresponds to Cylinder 1
-        activeStates.Add(2, false); // Corresponds to Cylinder 2
+        ActiveStatesCorrect.Add(1, false); // Corresponds to Oxygen Cylinder
+        ActiveStatesCorrect.Add(2, false); // Corresponds to Oxygen Regulator
+        ActiveStatesCorrect.Add(3, false); // Corresponds to Acetylene Cylinder
+        ActiveStatesCorrect.Add(4, false); // Corresponds to Acetylene Regulator
+        ActiveStatesCorrect.Add(5, false); // Corresponds to Oxygen Hose
+        ActiveStatesCorrect.Add(6, false); // Corresponds to Acetylene Hose
+        ActiveStatesCorrect.Add(7, false); // Corresponds to OA Torch
+        ActiveStatesCorrect.Add(8, false); // Corresponds to Striker
     }
 
     private void OnEnable()
@@ -110,13 +126,15 @@ public class SafetyStateController : MonoBehaviour
 
     private void ChangeActiveDictValue()
     {
-        if(activeStates[currentID] == false)
+        if(ActiveStatesCorrect[currentID] == false)
         {
-            activeStates[currentID] = true;
+            ActiveStatesCorrect[currentID] = true;
+            // AddToActiveList();
         }
-        else if(activeStates[currentID] == true)
+        else if(ActiveStatesCorrect[currentID] == true)
         {
-            activeStates[currentID] = false;
+            ActiveStatesCorrect[currentID] = false;
+            // RemoveFromActiveLists();
         }
         // Debug.Log(activeStates[currentID]);
     }
@@ -129,20 +147,21 @@ public class SafetyStateController : MonoBehaviour
         {
             Debug.Log("Inpsect first!");
         }
-        if (currentID == 1)
+        if (previousID == 0) // This is creating a bug. 
         {
             return;
         }
-        if(activeStates[previousID] == false && isAllSafe == true)
+        if(ActiveStatesCorrect[previousID] == false && isAllSafe == true)
         {
-            AllSafeConsequences();
-            Debug.Log("Wrong!");
+            WhatsActive();
+            // CompareLists(ActiveStatesPlayer, ActiveStatesCorrectList);
         }
-        if (activeStates[previousID] == true && isAllSafe == false)
+        if (ActiveStatesCorrect[previousID] == true && isAllSafe == false)
         {
             Debug.Log("Someone isn't safe");
+            // UnsafeConsequences();
         }
-        if(activeStates[previousID] == true && isAllSafe == true)
+        if(ActiveStatesCorrect[previousID] == true && isAllSafe == true)
         {
             AllSafeConsequences();
         }
@@ -152,16 +171,32 @@ public class SafetyStateController : MonoBehaviour
         //}
     }
 
+    private void WhatsActive()
+    {
+        foreach (var item in ActiveStatesCorrect)
+        {
+            if (item.Value == true)
+            {
+                CurrentActiveEquipment.Add(item.Key);
+            }
+        }
+        AllSafeConsequences();
+        //foreach(var item in CurrentActiveEquipment)
+        //{
+        //    Debug.Log(item);
+        //}
+    }
+
     // Determines result of incorrect activation order when all equipment is safe
     private void AllSafeConsequences()
     {
-        if(activeStates[1] && activeStates[2] == true)
+        if(!CurrentActiveEquipment.Contains(1) && !CurrentActiveEquipment.Contains(3))
         {
-            Debug.Log("Looking Good");
+            Debug.Log("No Gas in System");
         }
-        else if(activeStates[1] == false && activeStates[2] == true)
+        if(CurrentActiveEquipment.Contains(1) && CurrentActiveEquipment.Contains(2))
         {
-            Debug.Log("Incorrect order");
+            Debug.Log("Oxy Regulator Burnout");
         }
     }
 
@@ -181,6 +216,39 @@ public class SafetyStateController : MonoBehaviour
     //public GameObject GetCurrentPrefab()
     //{
     //    return currentPrefab;
+    //}
+
+    //private void AddToActiveList()
+    //{
+    //    ActiveStatesPlayer.Add(currentID);
+    //    //ActiveStatesCorrectList.Add(currentID);
+
+    //    //foreach(var item in ActiveStatesCorrect)
+    //    //{
+    //    //    if(item.Value == true)
+    //    //    {
+    //    //        ActiveStatesPlayer.Add(item.Key);
+    //    //    }
+    //    //}
+    //}
+
+    //private void RemoveFromActiveLists()
+    //{
+    //    ActiveStatesPlayer.Remove(currentID);
+    //}
+
+    //private bool CompareLists(List<int> a, List<int> b)
+    //{
+    //    for (var i = 0; i < a.Count; i++)
+    //    {
+    //        if (a[i] != b[i])
+    //        {
+    //            Debug.Log("Wrong!");
+    //            return false;
+    //        }
+    //    }
+    //    Debug.Log("yep");
+    //    return true;
     //}
 
     #endregion

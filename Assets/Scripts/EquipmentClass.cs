@@ -251,12 +251,14 @@ public class EquipmentClass : MonoBehaviour
     private void OnEnable()
     {
         ClickMenuController.OnInspectClicked += DisableColliders;
+        // ClickMenuController.OnClickMenu += DisableColliders; // Adds bug where clicking on objects while click menu is open makes it impossible to re-open clickmenu 
         InspectMenuController.OnInspectMenuDeactivate += EnableColliders;
     }
 
     private void OnDisable()
     {
         ClickMenuController.OnInspectClicked -= DisableColliders;
+        // ClickMenuController.OnClickMenu -= DisableColliders;
         InspectMenuController.OnInspectMenuDeactivate -= EnableColliders;
     }
 
