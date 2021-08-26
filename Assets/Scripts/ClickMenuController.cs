@@ -75,7 +75,7 @@ public class ClickMenuController : MonoBehaviour
 
         if (myClickedPrefab.TryGetComponent(out EquipmentClass equipment))
         {
-            Debug.Log("Clicked on equipment " + equipment.Name);
+            // Debug.Log("Clicked on equipment " + equipment.Name);
 
             clickMenu.SetActive(true); // Need way to prevent re-clicking on object while inspect/use menu is open
             myTitle.text = equipment.Name;
