@@ -30,8 +30,9 @@ public class ClickMenuController : MonoBehaviour
     // EquipmentClass is subscribed to this delegate event
     // Will be used to send a message that the ClickMenu has opened
     // Adds bug where clicking on objects while ClickMenu is open makes it impossible to re-open ClickMenu
-    //public delegate void ClickMenuEvent();
-    //public static event ClickMenuEvent OnClickMenu;
+    public delegate void ClickMenuEvent();
+    public static event ClickMenuEvent OnClickMenu;
+    // public static event ClickMenuEvent OnClickMenuDisable;
 
     // EquipmentController is subscribed to this delegate event
     // EquipmentClass is subscribed to this delegate event (disables colliders when Inspect/Use menu is open)
@@ -81,7 +82,7 @@ public class ClickMenuController : MonoBehaviour
             myTitle.text = equipment.Name;
             myUseText.text = "Are you sure?"; // Meant as a check for now
         }
-        // OnClickMenu?.Invoke();
+        OnClickMenu?.Invoke();
     }
 
     public void MoveClickMenu(GameObject myClickedPrefab)

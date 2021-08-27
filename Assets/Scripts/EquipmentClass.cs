@@ -251,30 +251,62 @@ public class EquipmentClass : MonoBehaviour
     private void OnEnable()
     {
         ClickMenuController.OnInspectClicked += DisableColliders;
-        // ClickMenuController.OnClickMenu += DisableColliders; // Adds bug where clicking on objects while click menu is open makes it impossible to re-open clickmenu 
+        ClickMenuController.OnClickMenu += DisableColliders;
         InspectMenuController.OnInspectMenuDeactivate += EnableColliders;
     }
 
     private void OnDisable()
     {
         ClickMenuController.OnInspectClicked -= DisableColliders;
-        // ClickMenuController.OnClickMenu -= DisableColliders;
+        ClickMenuController.OnClickMenu -= DisableColliders;
         InspectMenuController.OnInspectMenuDeactivate -= EnableColliders;
     }
 
+    // Polygon Collider on one component stays active until second piece of equipment has been clicked
+    // Probably has something to do with how my if statements are set up
     public void DisableColliders()
     {
-        GetComponent<Collider2D>().enabled = false;
+        if (GetComponent<Collider2D>().enabled == false)
+        {
+            return;
+        }
+        else
+        {
+            GetComponent<Collider2D>().enabled = false;
+        }
+        if (GetComponent<PolygonCollider2D>() != null)
+        {
+            if (GetComponent<PolygonCollider2D>().enabled == false)
+            {
+                return;
+            }
+            else
+            {
+                GetComponent<PolygonCollider2D>().enabled = false;
+            }
+        }
     }
 
     public void EnableColliders()
     {
-        if(GetComponent<Collider2D>().enabled == true)
+        if (GetComponent<Collider2D>().enabled == true)
         {
             return;
-        }else
+        }
+        else
         {
             GetComponent<Collider2D>().enabled = true;
+        }
+        if (GetComponent<PolygonCollider2D>() != null)
+        {
+            if (GetComponent<PolygonCollider2D>().enabled == true)
+            {
+                return;
+            }
+            else
+            {
+                GetComponent<PolygonCollider2D>().enabled = true;
+            }
         }
     }
 
