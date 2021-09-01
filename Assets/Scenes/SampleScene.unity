@@ -2496,7 +2496,7 @@ PrefabInstance:
     - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: _name
-      value: Oxygen Acetylene Torch
+      value: Torch
       objectReference: {fileID: 0}
     - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}

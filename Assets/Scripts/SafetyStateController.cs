@@ -38,6 +38,19 @@ public class SafetyStateController : MonoBehaviour
     private int torch = 7;
     private int lighter = 8;
 
+    // Should use events rather than this fragile id system
+    private int oxyLeakEvent = 1;
+    private int acetylLeakEvent = 3;
+    private int oxyBurnout = 2;
+    private int acetylBurnout = 4;
+    private int oxyHoseLeak = 5;
+    private int acetylHoseLeak = 6;
+    private int handExplosion = 7;
+    private int smallExplosion = 8;
+    private int bigExplosion = 9;
+    private int noAcetyl = 10;
+
+
     // Were going to be sent with to timer
     // private int oxyLeak = 1;
     // private int acetylLeak = 2;
@@ -50,6 +63,9 @@ public class SafetyStateController : MonoBehaviour
     public delegate void SafetyStatusEvent();
     public static event SafetyStatusEvent OnStatusChanged;
     // OnStatusChanged?.Invoke(this.gameObject);
+
+    public delegate void ConsequenceEvent(int whichAccident);
+    public static event ConsequenceEvent OnConsequence;
 
     // Timer is subscribed to this delegate event
     // public delegate void LeakEvent(int id, bool leak);
@@ -195,6 +211,7 @@ public class SafetyStateController : MonoBehaviour
             ActiveStatesCorrect[currentID] = true;
             UpdateActivePlayerList(currentID);
             WhatsActive();
+            SetPressureVariables(currentID);
             // CreateCompareLists();
             // CompareLists(ActiveStatesPlayer, ActiveStatesCorrectShort);
         }
@@ -203,6 +220,7 @@ public class SafetyStateController : MonoBehaviour
             ActiveStatesCorrect[currentID] = false;
             UpdateActivePlayerList(currentID);
             WhatsActive();
+            SetPressureVariables(currentID);
             // CreateCompareLists();
             // CompareLists(ActiveStatesPlayer, ActiveStatesCorrectShort);
         }
@@ -237,7 +255,7 @@ public class SafetyStateController : MonoBehaviour
         {
             OxyRegBurnout.Remove(id);
         }
-        CompareLists(OxyRegBurnout, OxyRegBurnoutTrue, isOxyBurnout, isOxyPressure, id);
+        CompareLists(OxyRegBurnout, OxyRegBurnoutTrue, oxyReg);
     }
 
     private void AcetylRegBurnoutTest(int id)
@@ -250,83 +268,74 @@ public class SafetyStateController : MonoBehaviour
         {
             AcetylRegBurnout.Remove(id);
         }
-        CompareLists(AcetylRegBurnout, AcetylRegBurnoutTrue, isAcetylBurnout, isAcetylPressure, id);
+        CompareLists(AcetylRegBurnout, AcetylRegBurnoutTrue, acetylReg);
     }
 
-    // This disaster takes the lists provided by AcetylReg- or OxyReg- and compares them
-    // Depending on the list comparison, and a safetyState dictionary look up, the regulator either burns out or doesn't
-    private void CompareLists(List<int> a, List<int> b, bool oops, bool correct, int id)
+    private void CompareLists(List<int> a, List<int> b, int reg)
     {
         if (a.Count != b.Count)
         {
-            // Debug.Log("Lists Unequal");
-            oops = false; // Doesn't actually change bool?
-            correct = true; // Doesn't actually change bool?
+            Debug.Log("Lists Unequal");
             return;
         }
-        if (id == oxyReg)
+        if (a.Count == b.Count)
         {
-            for (var i = 0; i < a.Count; i++)
+            for (var i =0; i < a.Count; i ++)
             {
-                if (a[i] != b[i])
+                if (a[i] != b[i] && safetyStates[reg] == true)
                 {
-                    if (safetyStates[oxyReg] == true)
-                    {
-                        Debug.Log("No Oxy Burnout Yet!");
-                        oops = false;
-                        correct = true;
-                        isOxyPressure = true;
-                        //Debug.Log(oops);
-                        //Debug.Log(correct);
-                        //Debug.Log(isOxyPressure);
-                        return;
-                    }
-                    if (safetyStates[oxyReg] == false)
-                    {
-                        Debug.Log("Oxy Reg Burnout!");
-                        oops = true;
-                        correct = false;
-                        return;
-                    }
-                    Debug.Log("Burnout Oxy Reg!");
-                    oops = true;
-                    correct = false;
+                    // Debug.Log(reg + " no burnout");
+                    // SetPressureVariables(reg);
+                    return;
+                }
+                if (a[i] != b[i] && safetyStates[reg] == false)
+                {
+                    // Debug.Log(reg + " burnout");
+                    OnConsequence?.Invoke(reg);
+                    return;
+                }
+                if (a[i] == b[i])
+                {
+                    // Debug.Log(reg + " burnout");
+                    OnConsequence?.Invoke(reg);
                     return;
                 }
             }
         }
-        if (id == acetylReg)
-        {
-            for (var i = 0; i < a.Count; i++)
-            {
-                if (a[i] != b[i])
-                {
-                    if (safetyStates[acetylReg] == true)
-                    {
-                        Debug.Log("No Acetyl Burnout Yet!");
-                        oops = false;
-                        correct = true;
-                        isAcetylPressure = true;
-                        return;
-                    }
-                    if (safetyStates[acetylReg] == false)
-                    {
-                        Debug.Log("Acetyl Reg Burnout!");
-                        oops = true;
-                        correct = false;
-                        return;
-                    }
-                    Debug.Log("Burnout Acetyl Reg!");
-                    oops = true;
-                    correct = false;
-                    return;
-                }
-            }
-        }
-        oops = true;
-        correct = false;
-        Debug.Log(id + " Burnout!");
     }
+
+    // No way to set pressure variables back to false?
+    private void SetPressureVariables(int reg)
+    {
+        if (reg == oxyReg)
+        {
+            if (ActiveStatesCorrect[oxyReg] == true && ActiveStatesCorrect[oxyCylinder] == true)
+            {
+                isOxyPressure = true;
+                Debug.Log("oxy " + isOxyPressure);
+            }
+            else
+            {
+                isOxyPressure = false;
+                Debug.Log("oxy " + isOxyPressure);
+            }
+            
+        }
+        if (reg == acetylReg)
+        {
+            if (ActiveStatesCorrect[acetylReg] == true && ActiveStatesCorrect[acetylCylinder] == true)
+            {
+                isAcetylPressure = true;
+                Debug.Log("acetyl " + isAcetylPressure);
+            }
+            else
+            {
+                isAcetylPressure = false;
+                Debug.Log("acetyl " + isAcetylPressure);
+            }
+        }
+    }
+
 
     // Checks position of torch in ActiveStatesPlayer list
     private void LeakTest(int id)
@@ -338,8 +347,8 @@ public class SafetyStateController : MonoBehaviour
             if ((ActiveStatesPlayer.IndexOf(id) < ActiveStatesPlayer.IndexOf(oxyReg)) || safetyStates[torch] == false)
             {
                 isOxyLeak = true;
-                // OnLeaked?.Invoke(oxyLeak, isOxyLeak);
-                Debug.Log("Oxygen Leak from Torch?");
+                OnConsequence?.Invoke(oxyLeakEvent);
+                // Debug.Log("Oxygen Leak from Torch?");
             }
             else
             {
@@ -352,8 +361,8 @@ public class SafetyStateController : MonoBehaviour
             if ((ActiveStatesPlayer.IndexOf(id) < ActiveStatesPlayer.IndexOf(acetylReg)) || safetyStates[torch] == false)
             {
                 isAcetylLeak = true;
-                // OnLeaked?.Invoke(acetylLeak, isAcetylLeak);
-                Debug.Log("Acetylene Leak from Torch?");
+                OnConsequence?.Invoke(acetylLeakEvent);
+                // Debug.Log("Acetylene Leak from Torch?");
             }
             else
             {
@@ -363,11 +372,11 @@ public class SafetyStateController : MonoBehaviour
         }
         if (isOxyPressure == true && safetyStates[oxyHose] == false)
         {
-            Debug.Log("Oxy Leak from Hose");
+            OnConsequence?.Invoke(oxyHoseLeak);
         }
         if (isAcetylPressure == true && safetyStates[acetylHose] == false)
         {
-            Debug.Log("Acetyl Leak from Hose");
+            OnConsequence?.Invoke(acetylHoseLeak);
         }
     }
 
@@ -380,20 +389,20 @@ public class SafetyStateController : MonoBehaviour
         }
         if (isOxyLeak == true)
         {
-            Debug.Log("Torch Won't Light");
+            OnConsequence?.Invoke(noAcetyl);
         }
         if (isAcetylLeak == true)
         {
-            Debug.Log("Boom!");
+            OnConsequence?.Invoke(smallExplosion);
         }
         if (isAcetylLeak == true && isOxyLeak == true)
         {
-            Debug.Log("BIG BOOM!");
+            OnConsequence?.Invoke(bigExplosion);
         }
         if ((isAcetylPressure == true && isOxyPressure == true && safetyStates[torch] == true && safetyStates[lighter] == false) ||
             (isAcetylPressure == true && safetyStates[torch] == true && safetyStates[lighter] == false))
         {
-            Debug.Log("Explosion in Hand");
+            OnConsequence?.Invoke(handExplosion);
         }
     }
 
@@ -629,5 +638,81 @@ public class SafetyStateController : MonoBehaviour
     //    Debug.Log("Something activated while there is still unsafe equipment");
     //}
 
+
+    //private void CompareLists(List<int> a, List<int> b, bool oops, bool correct, int id)
+    //{
+    //    if (a.Count != b.Count)
+    //    {
+    //        // Debug.Log("Lists Unequal");
+    //        oops = false; // Doesn't actually change bool?
+    //        correct = true; // Doesn't actually change bool?
+    //        return;
+    //    }
+    //    if (id == oxyReg)
+    //    {
+    //        for (var i = 0; i < a.Count; i++)
+    //        {
+    //            if (a[i] != b[i])
+    //            {
+    //                if (safetyStates[oxyReg] == true)
+    //                {
+    //                    Debug.Log("No Oxy Burnout Yet!");
+    //                    oops = false;
+    //                    correct = true;
+    //                    isOxyPressure = true;
+    //                    return;
+    //                    //Debug.Log(oops);
+    //                    //Debug.Log(correct);
+    //                    //Debug.Log(isOxyPressure);
+    //                }
+    //                if (safetyStates[oxyReg] == false)
+    //                {
+    //                    oops = true;
+    //                    correct = false;
+    //                    OnConsequence?.Invoke(oxyBurnout);
+    //                    return;
+    //                }
+    //                else
+    //                {
+    //                    oops = true;
+    //                    correct = false;
+    //                    OnConsequence?.Invoke(oxyBurnout);
+    //                    return;
+    //                }
+    //            }
+    //        }
+    //    }
+    //    if (id == acetylReg)
+    //    {
+    //        for (var i = 0; i < a.Count; i++)
+    //        {
+    //            if (a[i] != b[i])
+    //            {
+    //                if (safetyStates[acetylReg] == true)
+    //                {
+    //                    Debug.Log("No Acetyl Burnout Yet!");
+    //                    oops = false;
+    //                    correct = true;
+    //                    isAcetylPressure = true;
+    //                    return;
+    //                }
+    //                if (safetyStates[acetylReg] == false)
+    //                {
+    //                    oops = true;
+    //                    correct = false;
+    //                    OnConsequence?.Invoke(acetylBurnout);
+    //                    return;
+    //                }
+    //                oops = true;
+    //                correct = false;
+    //                OnConsequence?.Invoke(acetylBurnout);
+    //                return;
+    //            }
+    //        }
+    //    }
+    //    oops = true;
+    //    correct = false;
+    //    OnConsequence?.Invoke(id);
+    //}
     #endregion
 }

@@ -22,6 +22,11 @@ public class EquipmentController : MonoBehaviour
     private bool isCurrentPrefabSafe;
     private bool isCurrentPrefabActive;
 
+    // Modal Window is subscribed to this delegate event
+    // I don't like this really, but I don't know how else to do it?
+    // public delegate void SendObjectInfo(string name, Sprite image, string description);
+    // public static event SendObjectInfo OnInfoSent;
+
     // Inspect Menu is subscribed to this delegate event
     // SafetyStateController is subscribed to this delegate event
     // Alerts subscribers that a GameObject safety value has changed
@@ -101,6 +106,8 @@ public class EquipmentController : MonoBehaviour
             currentPrefabID = equipment.ID;
             isCurrentPrefabSafe = equipment.IsSafe;
             isCurrentPrefabActive = equipment.IsActive;
+
+            // OnInfoSent?.Invoke(currentPrefabName, currentPrefabImage, currentPrefabDescr);
         }
     }
     
