@@ -21,9 +21,9 @@ public class SafetyStateController : MonoBehaviour
     // private int nextID;
     private int safeEquipCount = 0;
 
-    private bool isAllSafe = false;
-    private bool isAcetylBurnout = false;
-    private bool isOxyBurnout = false;
+    //private bool isAllSafe = false;
+    //private bool isAcetylBurnout = false;
+    //private bool isOxyBurnout = false;
     private bool isAcetylLeak = false;
     private bool isOxyLeak = false;
     private bool isAcetylPressure = false;
@@ -41,8 +41,8 @@ public class SafetyStateController : MonoBehaviour
     // Should use events rather than this fragile id system
     private int oxyLeakEvent = 1;
     private int acetylLeakEvent = 3;
-    private int oxyBurnout = 2;
-    private int acetylBurnout = 4;
+    // private int oxyBurnout = 2;
+    // private int acetylBurnout = 4;
     private int oxyHoseLeak = 5;
     private int acetylHoseLeak = 6;
     private int handExplosion = 7;
@@ -157,7 +157,7 @@ public class SafetyStateController : MonoBehaviour
     {
         if(safeEquipCount == safetyStates.Count)
         {
-            isAllSafe = true;
+            // isAllSafe = true;
             OnStatusChanged?.Invoke();
             // Debug.Log("We're all safe!");
         }
@@ -423,16 +423,6 @@ public class SafetyStateController : MonoBehaviour
                 CurrentActiveEquipment.Remove(item.Key);
             }
         }
-        //if (isAllSafe == true)
-        //{
-        //    AllSafeConsequences();
-        //}
-        //else { AllSafeConsequences(); }
-
-        //foreach (var item in CurrentActiveEquipment)
-        //{
-        //    Debug.Log(item + "WhatsActive List");
-        //}
     }
 
     #region Code Graveyard

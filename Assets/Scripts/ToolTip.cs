@@ -25,14 +25,14 @@ public class ToolTip : MonoBehaviour
 
     private void OnEnable()
     {
-        OnClickDelegate.OnHovered += ShowToolTip;
-        OnClickDelegate.OnHoverExit += HideToolTip;
+        //OnClickDelegate.OnHovered += ShowToolTip;
+        //OnClickDelegate.OnHoverExit += HideToolTip;
     }
 
     private void OnDisable()
     {
-        OnClickDelegate.OnHovered -= ShowToolTip;
-        OnClickDelegate.OnHoverExit -= HideToolTip;
+        //OnClickDelegate.OnHovered -= ShowToolTip;
+        //OnClickDelegate.OnHoverExit -= HideToolTip;
     }
 
     private void Update()

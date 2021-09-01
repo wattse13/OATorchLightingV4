@@ -12,9 +12,9 @@ public class OnClickDelegate : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public delegate void ClickEvent(GameObject equipment);
     public static event ClickEvent OnClicked;
 
-    public delegate void HoverEvent(GameObject equipment);
-    public static event HoverEvent OnHovered;
-    public static event HoverEvent OnHoverExit;
+    //public delegate void HoverEvent(GameObject equipment);
+    //public static event HoverEvent OnHovered;
+    //public static event HoverEvent OnHoverExit;
 
     [SerializeField] private Camera _camera;
 

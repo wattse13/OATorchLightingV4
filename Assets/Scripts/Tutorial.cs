@@ -50,7 +50,7 @@ public class Tutorial : MonoBehaviour
 
     public void AdvanceText()
     {
-        if (currentText == tutorialMessages.Count - 1)
+        if (currentText == tutorialMessages.Count - 1) // kinda hacky... 
         {
             SelfDestruct();
             return;
