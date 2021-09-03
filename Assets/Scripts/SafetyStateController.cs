@@ -48,11 +48,20 @@ public class SafetyStateController : MonoBehaviour
     private int noAcetyl = 10;
 
     // InspectMenuController is subscribed to this delegate event
-    // Will be used to send a message when a GameObject's safety status has been changed
+    // WinState is subscribed to this event
+    // Will be used to send a message when all GameObject's safety status have been changed
     public delegate void SafetyStatusEvent();
     public static event SafetyStatusEvent OnStatusChanged;
-    // OnStatusChanged?.Invoke(this.gameObject);
 
+    // WinState is subscribed to this delegate event
+    // Used to tell subscribers all important objects are active
+    public delegate void ActiveStatusEvent();
+    public static event ActiveStatusEvent OnActiveChanged;
+
+    // GameEvents is subscribed to this delegate event
+    // Passes integer variable which corresponds to integer variable in GameEvents
+    // Determines what kind of accident hass occured
+    // The matching integer variable system is very fragile
     public delegate void ConsequenceEvent(int whichAccident);
     public static event ConsequenceEvent OnConsequence;
 
@@ -142,6 +151,24 @@ public class SafetyStateController : MonoBehaviour
         else if(safeEquipCount < safetyStates.Count)
         {
             Debug.Log("Someone's still unsafe");
+        }
+    }
+
+    // Called at end of WhatsActive
+    // If hash set contains necessary integers, it invokes delegate event
+    // Delegate event tells win state to change boolean value isAllActive to true
+    private void AreEquipActive()
+    {
+        if (CurrentActiveEquipment.Contains(oxyCylinder) && CurrentActiveEquipment.Contains(oxyReg) && CurrentActiveEquipment.Contains(acetylCylinder) &&
+            CurrentActiveEquipment.Contains(acetylReg) && CurrentActiveEquipment.Contains(torch) && CurrentActiveEquipment.Contains(lighter))
+        {
+            OnActiveChanged?.Invoke();
+        }
+        if ((CurrentActiveEquipment.Contains(oxyCylinder) && CurrentActiveEquipment.Contains(oxyReg) && CurrentActiveEquipment.Contains(acetylCylinder) &&
+            CurrentActiveEquipment.Contains(acetylReg) && CurrentActiveEquipment.Contains(torch) && CurrentActiveEquipment.Contains(lighter)) && 
+            (CurrentActiveEquipment.Contains(oxyHose) || CurrentActiveEquipment.Contains(acetylHose)))
+        {
+            OnActiveChanged?.Invoke();
         }
     }
 
@@ -244,6 +271,8 @@ public class SafetyStateController : MonoBehaviour
         CompareLists(AcetylRegBurnout, AcetylRegBurnoutTrue, acetylReg);
     }
 
+    // Compares lists created by oxy/acetylRegBurnoutTest to oxy/acetylRegBurnoutTrue lists
+    // Burnout event occurs if the lists are equal
     private void CompareLists(List<int> a, List<int> b, int reg)
     {
         if (a.Count != b.Count)
@@ -304,7 +333,6 @@ public class SafetyStateController : MonoBehaviour
             }
         }
     }
-
 
     // Checks position of torch in ActiveStatesPlayer list
     private void LeakTest(int id)
@@ -383,6 +411,7 @@ public class SafetyStateController : MonoBehaviour
             if (item.Value == true)
             {
                 CurrentActiveEquipment.Add(item.Key);
+                AreEquipActive();
             }
         }
         foreach (var item in ActiveStatesCorrect)
@@ -390,6 +419,7 @@ public class SafetyStateController : MonoBehaviour
             if (item.Value == false)
             {
                 CurrentActiveEquipment.Remove(item.Key);
+                AreEquipActive();
             }
         }
     }

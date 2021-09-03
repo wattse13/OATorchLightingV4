@@ -454,7 +454,7 @@ PrefabInstance:
     - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
@@ -584,8 +584,8 @@ PrefabInstance:
         type: 3}
       propertyPath: _useUnsafeDescr
       value: 'Using the incorrect regulator can cause regulator burn out. Do you
-        want a fire on top of a cylinder of highly pressurized and flammable gas?
-        No. No one wants that. '
+        want a fire on top of a cylinder of highly pressurized gas? No. No one wants
+        that. '
       objectReference: {fileID: 0}
     - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
@@ -644,7 +644,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &145687815
 GameObject:
@@ -982,7 +982,7 @@ PrefabInstance:
     - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
@@ -1293,6 +1293,49 @@ Canvas:
   m_SortingLayerID: 1640151257
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &479239561
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 479239562}
+  - component: {fileID: 479239563}
+  m_Layer: 0
+  m_Name: WinState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &479239562
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479239561}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 157.38075, y: 136.55475, z: -37.11696}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &479239563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479239561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a00a86396b2822d4d846c4460be30ec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &514194304
 GameObject:
   m_ObjectHideFlags: 0
@@ -1321,7 +1364,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -1725,7 +1768,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &653357375 stripped
 GameObject:
@@ -2400,7 +2443,7 @@ PrefabInstance:
     - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
@@ -2545,7 +2588,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _descriptionUnsafe
       value: When it comes to preventing a fire from reaching cylinders of highly
-        compressed and flammable gas, redundencies are a good idea. Use flashback
+        compressed and flammable gas, redundancies are a good idea. Use flashback
         arrestors!
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2629,7 +2672,7 @@ Transform:
   m_LocalScale: {x: 4.819428, y: 2.0685036, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &857716246
 GameObject:
@@ -3142,7 +3185,7 @@ Transform:
   m_LocalScale: {x: 0.9115261, y: 0.911526, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1049847518
 GameObject:
@@ -3737,7 +3780,7 @@ PrefabInstance:
     - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
@@ -3883,7 +3926,7 @@ PrefabInstance:
     - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: _descriptionUnsafe
-      value: There are no flashback arrestors installed and it looks like someon
+      value: There are no flashback arrestors installed and it looks like someone
         tried to fix a leak with some tape. Gas leaking out of places it shouldn't
         is never good.
       objectReference: {fileID: 0}
@@ -4262,7 +4305,7 @@ Transform:
   m_Children:
   - {fileID: 454366819}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1543511756
 GameObject:
@@ -4307,7 +4350,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1544880228
 GameObject:
@@ -4482,7 +4525,7 @@ PrefabInstance:
     - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
@@ -5478,7 +5521,7 @@ PrefabInstance:
     - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
@@ -5608,7 +5651,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _useUnsafeDescr
       value: 'There are no flashback arrestors to stop a potential fire from reaching
-        the cylinder of highly compressed and flammable gas. '
+        the cylinder of highly compressed gas. '
       objectReference: {fileID: 0}
     - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
@@ -5619,7 +5662,7 @@ PrefabInstance:
     - target: {fileID: 8491976243048846039, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: _descriptionUnsafe
-      value: There are no flashback arrestors installed and it looks like someon
+      value: There are no flashback arrestors installed and it looks like someone
         tried to fix a leak with some tape. Gas leaking out of places it shouldn't
         is never good.
       objectReference: {fileID: 0}
@@ -5680,7 +5723,7 @@ PrefabInstance:
     - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
@@ -6204,7 +6247,7 @@ PrefabInstance:
     - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 463139496607131802, guid: b2143f8153635c64ab9544c693cad585,
         type: 3}

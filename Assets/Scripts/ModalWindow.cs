@@ -22,12 +22,14 @@ public class ModalWindow : MonoBehaviour
     {
         GameEvents.OnResetMessageSent += ResetMessageRecieved;
         GameEvents.OnContinueMessageSent += ContinueMessageRecieved;
+        WinState.OnWin += ResetMessageRecieved;
     }
 
     private void OnDisable()
     {
         GameEvents.OnResetMessageSent -= ResetMessageRecieved;
         GameEvents.OnContinueMessageSent -= ContinueMessageRecieved;
+        WinState.OnWin -= ResetMessageRecieved;
     }
 
     private void ResetMessageRecieved(string message)
