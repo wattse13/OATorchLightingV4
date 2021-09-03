@@ -7,10 +7,7 @@ using UnityEngine;
 // Also used to control UseMenu
 public class InspectMenuController : MonoBehaviour
 {
-    private GameObject currentPrefab;
     [SerializeField] private GameObject blurLayer;
-    private GameObject inspectMenu;
-    private GameObject useMenu;
 
     public GameObject replaceButton;
 
@@ -20,14 +17,11 @@ public class InspectMenuController : MonoBehaviour
     private TMP_Text myUseText;
     private TMP_Text myUseButtonText;
 
-    // private bool isPrefabActive;
     private bool isPrefabSafe;
     private bool isPrefabActive;
     private string currentPrefabName;
-    private string currentPrefabDescr;
     private string currentPrefabDescrUnsafe;
     private string currentPrefabDescrSafe;
-    private string currentPrefabUseDescr;
     private string currentPrefabUseUnsafeDescr;
     private string currentPrefabUseSafeDescr;
 
@@ -35,14 +29,14 @@ public class InspectMenuController : MonoBehaviour
 
     // Delegates //
 
-    // EquipmentController is subscribed to this delegate event
-    // EquipmentClass is subscribed to this delegate event (Reenables colliders once Inspect/Use menu is deactivated)
-    // Will be used to send a message when inspect menu has been activated
+    // EquipmentController is subscribed to this delegate event 
+    // Reenables colliders once Inspect/Use menu is deactivated
     public delegate void InspectMenuEvent();
     public static event InspectMenuEvent OnInspectMenuActivate;
     public static event InspectMenuEvent OnInspectMenuDeactivate; // Is this legit?
 
     // EquipmentController is subscribed to this delegate event
+    // Updates equipment data through EquipmentController class
     public delegate void UseMenuEvent();
     public static event UseMenuEvent OnUseMenuActivate;
 
@@ -53,7 +47,6 @@ public class InspectMenuController : MonoBehaviour
 
     private void OnEnable()
     {
-        // GameEvents.OnMessageSent += SetCurrentPrefab;
         OnClickDelegate.OnClicked += SetCurrentPrefabValues;
         SafetyStateController.OnStatusChanged += AllSafe;
         EquipmentController.OnSafetyValueChanged += UpdatePrefabSafetyStatus;
@@ -61,7 +54,6 @@ public class InspectMenuController : MonoBehaviour
     }
     private void OnDisable()
     {
-        // GameEvents.OnMessageSent -= SetCurrentPrefab;
         OnClickDelegate.OnClicked -= SetCurrentPrefabValues;
         SafetyStateController.OnStatusChanged -= AllSafe;
         EquipmentController.OnSafetyValueChanged -= UpdatePrefabSafetyStatus;
@@ -70,9 +62,6 @@ public class InspectMenuController : MonoBehaviour
 
     private void Start()
     {
-        inspectMenu = GameObject.Find("InspectMenu");
-        useMenu = GameObject.Find("UseMenu");
-
         myInspectTitle = GameObject.Find("EquipInspectName").GetComponent<TMP_Text>();
         myInspectText = GameObject.Find("InspectDescription").GetComponent<TMP_Text>();
         myUseTitle = GameObject.Find("EquipUseName").GetComponent<TMP_Text>();
@@ -80,12 +69,12 @@ public class InspectMenuController : MonoBehaviour
         myUseButtonText = GameObject.Find("UseButton").GetComponentInChildren<TMP_Text>();
     }
 
+    // Sets variables to hold data about clicked on object
     public void SetCurrentPrefabValues(GameObject myClickedPrefab)
     {
         if(myClickedPrefab.TryGetComponent(out EquipmentClass equipment))
         {
             currentPrefabName = equipment.Name;
-            currentPrefabDescr = equipment.DescriptionCurrent;
             currentPrefabDescrSafe = equipment.DescriptionSafe;
             currentPrefabDescrUnsafe = equipment.DescriptionUnsafe;
             currentPrefabUseSafeDescr = equipment.UseSafeDescr;
@@ -104,7 +93,6 @@ public class InspectMenuController : MonoBehaviour
             isPrefabSafe = equipment.IsSafe;
             SetInspectText();
             SetUseText();
-            // Debug.Log("Updating");
         }
     }
 
@@ -123,7 +111,6 @@ public class InspectMenuController : MonoBehaviour
     {
         isAllEquipSafe = true;
         Debug.Log("We're all safe!");
-        // Maybe show a pop up congratulations?
     }
 
     // Called at end of UpdatePrefabSafetyStatus() function
@@ -137,15 +124,12 @@ public class InspectMenuController : MonoBehaviour
         if(isPrefabSafe == false)
         {
             myInspectText.text = currentPrefabDescrUnsafe;
-            // Tried doing this in a seperate function, but couldn't re-enable button after first disable
             replaceButton.SetActive(true);
-            // Debug.Log("I'm still unsafe");
         }
         else if(isPrefabSafe == true)
         {
             myInspectText.text = currentPrefabDescrSafe;
             replaceButton.SetActive(false);
-            // Debug.Log("It's safe now");
         }
     }
 
@@ -184,8 +168,6 @@ public class InspectMenuController : MonoBehaviour
         {
             myUseText.text = currentPrefabUseSafeDescr;
         }
-        // Check value of isAllEquipSafe
-        // Set text based on above two conditions
     }
 
     public void AddBackgroundBlur()
@@ -212,46 +194,4 @@ public class InspectMenuController : MonoBehaviour
     {
         OnUseMenuActivate?.Invoke();
     }
-
-    //public void ValueTest()
-    //{
-    //    Debug.Log(isPrefabSafe);
-    //    Debug.Log(currentPrefabName);
-    //    // Debug.Log(currentPrefabDescrUnsafe);
-    //}
-
-    #region Code Grave Yard
-    //// This method is called once a the OnMessageSent delegate event is triggered
-    //public void SetCurrentPrefab(GameObject myClickedPrefab)
-    //{
-    //    currentPrefab = myClickedPrefab;
-    //}
-
-    //// When this function is called by SetCurrentPrefab it should retrun the passed in GameObject parameter as a value
-    //public GameObject GetCurrentPrefab()
-    //{
-    //    // Debug.Log("Made it to GetCurrentPrefab");
-    //    return currentPrefab;
-    //}
-
-    //// Assigns currentPrefab variable to value of the GetCurrentPrefab() return value
-    //// Calls all functions related to centering and emphasizing inspected GameObject and passes currentPrefab in as argument
-    //public void CallMenuFunctions()
-    //{
-    //    currentPrefab = GetCurrentPrefab();
-    //    // CenterPrefab(currentPrefab);
-    //    // FocusLayer(currentPrefab);
-    //    // DisableCollider(currentPrefab);
-    //    // AddBackgroundBlur();
-    //}
-
-    //public void ExitMenuFunctions()
-    //{
-    //    currentPrefab = GetCurrentPrefab();
-    //    // ReturnPrefabPosition(currentPrefab);
-    //    // ReturnPrefabSortLayer(currentPrefab);
-    //    // ReturnPrefabCollider(currentPrefab);
-    //    // RemoveBlur();
-    //}
-    #endregion
 }

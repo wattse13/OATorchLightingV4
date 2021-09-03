@@ -10,32 +10,24 @@ using UnityEngine;
 public class ClickMenuController : MonoBehaviour
 {
     private TMP_Text myTitle;
-    private TMP_Text myText;
     private TMP_Text myUseText;
 
     private GameObject clickMenu;
     private GameObject inspectMenu;
     private GameObject useMenu;
-   
-    // Buttons can probably all be private? Or are they even necessary?
-    // public GameObject inspectButton;
-    // public GameObject backButton;
-    // public GameObject exitButton;
 
     public int offsetRight;
     public int offsetLeft;
 
     private RectTransform clickMenuTransform;
 
-    // EquipmentClass is subscribed to this delegate event
-    // Will be used to send a message that the ClickMenu has opened
-    // Adds bug where clicking on objects while ClickMenu is open makes it impossible to re-open ClickMenu
+    // EquipmentClass is subscribed to this delegate event (disables colliders when Inspect/Use menu is open)
+    // Invoked when Click Menu is first opened
     public delegate void ClickMenuEvent();
     public static event ClickMenuEvent OnClickMenu;
     // public static event ClickMenuEvent OnClickMenuDisable;
 
-    // EquipmentController is subscribed to this delegate event
-    // EquipmentClass is subscribed to this delegate event (disables colliders when Inspect/Use menu is open)
+    // EquipmentController is subscribed to this delegate event (disables colliders when Inspect/Use menu is open)
     // Invoked when ClickMenu transitions over to Inspect/UseMenu
     public delegate void InspectButtonEvent();
     public static event InspectButtonEvent OnInspectClicked;
@@ -70,21 +62,18 @@ public class ClickMenuController : MonoBehaviour
     }
 
     // This method is probably doing too many different things
+    // Show menu with equipment name and option to inspect or manipulate
     public void ShowClickMenu(GameObject myClickedPrefab)
     {
-        // Show menu with equipment name and option to inspect or manipulate
-
         if (myClickedPrefab.TryGetComponent(out EquipmentClass equipment))
         {
-            // Debug.Log("Clicked on equipment " + equipment.Name);
-
-            clickMenu.SetActive(true); // Need way to prevent re-clicking on object while inspect/use menu is open
+            clickMenu.SetActive(true);
             myTitle.text = equipment.Name;
-            myUseText.text = "Are you sure?"; // Meant as a check for now
         }
         OnClickMenu?.Invoke();
     }
 
+    // Makes sure that the ClickMenu does not display off screen
     public void MoveClickMenu(GameObject myClickedPrefab)
     {
         if (myClickedPrefab.TryGetComponent(out EquipmentClass equipment))
@@ -102,6 +91,7 @@ public class ClickMenuController : MonoBehaviour
         }
     }
 
+    // Triggers DisableColliders() in the EquipmentClass 
     public void InspectButtonClick()
     {
         OnInspectClicked?.Invoke();

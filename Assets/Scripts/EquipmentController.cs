@@ -22,11 +22,6 @@ public class EquipmentController : MonoBehaviour
     private bool isCurrentPrefabSafe;
     private bool isCurrentPrefabActive;
 
-    // Modal Window is subscribed to this delegate event
-    // I don't like this really, but I don't know how else to do it?
-    // public delegate void SendObjectInfo(string name, Sprite image, string description);
-    // public static event SendObjectInfo OnInfoSent;
-
     // Inspect Menu is subscribed to this delegate event
     // SafetyStateController is subscribed to this delegate event
     // Alerts subscribers that a GameObject safety value has changed
@@ -43,7 +38,6 @@ public class EquipmentController : MonoBehaviour
     {
         OnClickDelegate.OnClicked += SetCurrentPrefab;
         OnClickDelegate.OnClicked += SetCurrentPrefabValues;
-        // SafetyStateController.OnStatusChanged += SetSafetyValue;
         ClickMenuController.OnInspectClicked += CallMenuFunctions;
         InspectMenuController.OnInspectMenuActivate += ReplaceButtonClicked;
         InspectMenuController.OnInspectMenuActivate += ChangeSprite;
@@ -55,7 +49,6 @@ public class EquipmentController : MonoBehaviour
     {
         OnClickDelegate.OnClicked -= SetCurrentPrefab;
         OnClickDelegate.OnClicked -= SetCurrentPrefabValues;
-        // SafetyStateController.OnStatusChanged -= SetSafetyValue;
         ClickMenuController.OnInspectClicked -= CallMenuFunctions;
         InspectMenuController.OnInspectMenuActivate -= ReplaceButtonClicked;
         InspectMenuController.OnInspectMenuActivate -= ChangeSprite;
@@ -72,7 +65,6 @@ public class EquipmentController : MonoBehaviour
     // When this function is called by SetCurrentPrefab it should retrun the passed in GameObject parameter as a value
     public GameObject GetCurrentPrefab()
     {
-        // Debug.Log("Made it to GetCurrentPrefab");
         return currentPrefab;
     }
 
@@ -106,8 +98,6 @@ public class EquipmentController : MonoBehaviour
             currentPrefabID = equipment.ID;
             isCurrentPrefabSafe = equipment.IsSafe;
             isCurrentPrefabActive = equipment.IsActive;
-
-            // OnInfoSent?.Invoke(currentPrefabName, currentPrefabImage, currentPrefabDescr);
         }
     }
     

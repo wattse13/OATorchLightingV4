@@ -9,7 +9,6 @@ public class SafetyStateController : MonoBehaviour
     Dictionary<int, bool> ActiveStatesCorrect = new Dictionary<int, bool>();
     HashSet<int> CurrentActiveEquipment = new HashSet<int>();
     List<int> ActiveStatesPlayer = new List<int>();
-    // List<int> ActiveStatesCorrectShort = new List<int>();
 
     List<int> OxyRegBurnout = new List<int>();
     List<int> OxyRegBurnoutTrue = new List<int>();
@@ -17,8 +16,6 @@ public class SafetyStateController : MonoBehaviour
     List<int> AcetylRegBurnoutTrue = new List<int>();
 
     private int currentID;
-    // private int previousID;
-    // private int nextID;
     private int safeEquipCount = 0;
 
     //private bool isAllSafe = false;
@@ -50,14 +47,6 @@ public class SafetyStateController : MonoBehaviour
     private int bigExplosion = 9;
     private int noAcetyl = 10;
 
-
-    // Were going to be sent with to timer
-    // private int oxyLeak = 1;
-    // private int acetylLeak = 2;
-
-
-    // public GameObject currentPrefab; // Not currently needed
-
     // InspectMenuController is subscribed to this delegate event
     // Will be used to send a message when a GameObject's safety status has been changed
     public delegate void SafetyStatusEvent();
@@ -66,11 +55,6 @@ public class SafetyStateController : MonoBehaviour
 
     public delegate void ConsequenceEvent(int whichAccident);
     public static event ConsequenceEvent OnConsequence;
-
-    // Timer is subscribed to this delegate event
-    // public delegate void LeakEvent(int id, bool leak);
-    // public static event LeakEvent OnLeaked;
-    // public static event LeakEvent OnStoppedLeak;
 
     private void Awake()
     {
@@ -108,7 +92,6 @@ public class SafetyStateController : MonoBehaviour
         EquipmentController.OnSafetyValueChanged += SetSafetyID;
         EquipmentController.OnActiveValueChanged += SetActiveID;
         EquipmentController.OnActiveValueChanged += ConsequenceCoordinator;
-        // OnClickDelegate.OnClicked += SetCurrentPrefab; // Not currently needed
     }
 
     private void OnDisable()
@@ -116,7 +99,6 @@ public class SafetyStateController : MonoBehaviour
         EquipmentController.OnSafetyValueChanged -= SetSafetyID;
         EquipmentController.OnActiveValueChanged -= SetActiveID;
         EquipmentController.OnActiveValueChanged -= ConsequenceCoordinator;
-        // OnClickDelegate.OnClicked -= SetCurrentPrefab; // Not currently needed
     }
 
     // This function finds the ID integer value of the passed in GameObject
@@ -127,9 +109,8 @@ public class SafetyStateController : MonoBehaviour
         // Determine GameObject ID
         if(myClickedPrefab.TryGetComponent(out EquipmentClass equipment))
         {
-            // Debug.Log(equipment.Name);
             currentID = equipment.ID;
-        } // Should I add else statement to any of these?
+        } 
 
         ChangeSafeDictValue(); // Seems a little messy to call these three functions from here
         AddSafeEquipCount();
@@ -148,7 +129,6 @@ public class SafetyStateController : MonoBehaviour
     private void AddSafeEquipCount()
     {
         safeEquipCount += 1;
-        Debug.Log(safeEquipCount);
     }
 
     // Called at end of SetCurrentID which feels messy
@@ -157,9 +137,7 @@ public class SafetyStateController : MonoBehaviour
     {
         if(safeEquipCount == safetyStates.Count)
         {
-            // isAllSafe = true;
             OnStatusChanged?.Invoke();
-            // Debug.Log("We're all safe!");
         }
         else if(safeEquipCount < safetyStates.Count)
         {
@@ -174,13 +152,10 @@ public class SafetyStateController : MonoBehaviour
         {
             currentID = equipment.ID;
         }
-        // previousID = currentID - 1;
-        // nextID = currentID + 1;
-
         ChangeActiveDictValue();
-        // CheckActiveOrder();
     }
 
+    // Calls different methods based on GameObject's ID value
     private void ConsequenceCoordinator(GameObject myClickedPrefab)
     {
         if (myClickedPrefab.TryGetComponent(out EquipmentClass equipment))
@@ -204,6 +179,8 @@ public class SafetyStateController : MonoBehaviour
         }
     }
 
+    // Changes the dictionary value in ActiveStatesCorrect
+    // Uses currentID as key which is a rather fragile system probably definately
     private void ChangeActiveDictValue()
     {
         if(ActiveStatesCorrect[currentID] == false)
@@ -212,8 +189,6 @@ public class SafetyStateController : MonoBehaviour
             UpdateActivePlayerList(currentID);
             WhatsActive();
             SetPressureVariables(currentID);
-            // CreateCompareLists();
-            // CompareLists(ActiveStatesPlayer, ActiveStatesCorrectShort);
         }
         else if(ActiveStatesCorrect[currentID] == true)
         {
@@ -221,12 +196,10 @@ public class SafetyStateController : MonoBehaviour
             UpdateActivePlayerList(currentID);
             WhatsActive();
             SetPressureVariables(currentID);
-            // CreateCompareLists();
-            // CompareLists(ActiveStatesPlayer, ActiveStatesCorrectShort);
         }
-        // Debug.Log(activeStates[currentID]);
     }
 
+    // Updates ActiveStatesPlayer list according to what keys in ActiveStatesCorrect have a value of true
     private void UpdateActivePlayerList(int id)
     {
         if (!ActiveStatesPlayer.Contains(id))
@@ -284,19 +257,15 @@ public class SafetyStateController : MonoBehaviour
             {
                 if (a[i] != b[i] && safetyStates[reg] == true)
                 {
-                    // Debug.Log(reg + " no burnout");
-                    // SetPressureVariables(reg);
                     return;
                 }
                 if (a[i] != b[i] && safetyStates[reg] == false)
                 {
-                    // Debug.Log(reg + " burnout");
                     OnConsequence?.Invoke(reg);
                     return;
                 }
                 if (a[i] == b[i])
                 {
-                    // Debug.Log(reg + " burnout");
                     OnConsequence?.Invoke(reg);
                     return;
                 }
@@ -312,12 +281,12 @@ public class SafetyStateController : MonoBehaviour
             if (ActiveStatesCorrect[oxyReg] == true && ActiveStatesCorrect[oxyCylinder] == true)
             {
                 isOxyPressure = true;
-                Debug.Log("oxy " + isOxyPressure);
+                // Debug.Log("oxy " + isOxyPressure);
             }
             else
             {
                 isOxyPressure = false;
-                Debug.Log("oxy " + isOxyPressure);
+                // Debug.Log("oxy " + isOxyPressure);
             }
             
         }
@@ -326,12 +295,12 @@ public class SafetyStateController : MonoBehaviour
             if (ActiveStatesCorrect[acetylReg] == true && ActiveStatesCorrect[acetylCylinder] == true)
             {
                 isAcetylPressure = true;
-                Debug.Log("acetyl " + isAcetylPressure);
+                // Debug.Log("acetyl " + isAcetylPressure);
             }
             else
             {
                 isAcetylPressure = false;
-                Debug.Log("acetyl " + isAcetylPressure);
+                // Debug.Log("acetyl " + isAcetylPressure);
             }
         }
     }
@@ -424,285 +393,4 @@ public class SafetyStateController : MonoBehaviour
             }
         }
     }
-
-    #region Code Graveyard
-
-    //public void SetCurrentPrefab(GameObject myClickedPrefab)
-    //{
-    //    currentPrefab = myClickedPrefab;
-    //}
-
-    //public GameObject GetCurrentPrefab()
-    //{
-    //    return currentPrefab;
-    //}
-
-    //private void AddToActiveList()
-    //{
-    //    ActiveStatesPlayer.Add(currentID);
-    //    //ActiveStatesCorrectList.Add(currentID);
-
-    //    //foreach(var item in ActiveStatesCorrect)
-    //    //{
-    //    //    if(item.Value == true)
-    //    //    {
-    //    //        ActiveStatesPlayer.Add(item.Key);
-    //    //    }
-    //    //}
-    //}
-
-    //private void RemoveFromActiveLists()
-    //{
-    //    ActiveStatesPlayer.Remove(currentID);
-    //}
-
-
-    //// Doesn't recognize problem if equipment is activated in correct order, but later deactivated
-    //// Need more steps to effectively play test
-    //private void CheckActiveOrder()
-    //{
-    //    //if (isAllSafe == false)
-    //    //{
-    //    //    Debug.Log("Inpsect first!");
-    //    //}
-    //    if (previousID == 0)
-    //    {
-    //        if (ActiveStatesCorrect[nextID] == true)
-    //        {
-    //            WhatsActive();
-    //            Debug.Log("Oxy Regulator Burnout");
-    //        }
-    //        return;
-    //    }
-    //    if (currentID == 3)
-    //    {
-    //        if (ActiveStatesCorrect[nextID] == true)
-    //        {
-    //            WhatsActive();
-    //            Debug.Log("Acetylene Regulator Burnout");
-    //        }
-    //    }
-    //    if (ActiveStatesCorrect[previousID] == false && isAllSafe == true)
-    //    {
-    //        WhatsActive();
-    //        // CompareLists(ActiveStatesPlayer, ActiveStatesCorrectList);
-    //    }
-    //    if (ActiveStatesCorrect[previousID] == true && isAllSafe == false)
-    //    {
-    //        Debug.Log("Someone isn't safe");
-    //        // UnsafeConsequences();
-    //    }
-    //    if (ActiveStatesCorrect[previousID] == true && isAllSafe == true)
-    //    {
-    //        return;
-    //        // I think this means player was succesful?
-    //        // AllSafeConsequences();
-    //    }
-    //}
-
-    //if (!CurrentActiveEquipment.Contains(1) && !CurrentActiveEquipment.Contains(3))
-    //{
-    //    Debug.Log("No Gas in System");
-    //    return; // Things only get dangerous once gas cylinders are opened
-    //}
-    //if (!CurrentActiveEquipment.Contains(1)) { Debug.Log("No Oxy in System"); }
-    //if (!CurrentActiveEquipment.Contains(2)) { Debug.Log("No Acetylene in System"); }
-    //if (!CurrentActiveEquipment.Contains(1) && !CurrentActiveEquipment.Contains(2) &&
-    //    CurrentActiveEquipment.Contains(3) && CurrentActiveEquipment.Contains(4))
-    //{
-    //    Debug.Log("Acetylene turned on before Oxygen");
-    //    // return;
-    //}
-    //if (CurrentActiveEquipment.Contains(1) && CurrentActiveEquipment.Contains(2) && CurrentActiveEquipment.Contains(3) &&
-    //    CurrentActiveEquipment.Contains(4) && CurrentActiveEquipment.Contains(7) && CurrentActiveEquipment.Contains(8))
-    //{
-    //    Debug.Log("Explosion!");
-    //    return;
-    //}
-    //if (!CurrentActiveEquipment.Contains(1) && CurrentActiveEquipment.Contains(2) && CurrentActiveEquipment.Contains(3) &&
-    //   CurrentActiveEquipment.Contains(4) && CurrentActiveEquipment.Contains(7) && CurrentActiveEquipment.Contains(8))
-    //{
-    //    Debug.Log("Torch Lights. No Oxygen at Torch. Oxy Regulator Burnout Danger");
-    //    return;
-    //}
-    //if (CurrentActiveEquipment.Contains(1) && !CurrentActiveEquipment.Contains(2) && CurrentActiveEquipment.Contains(3) &&
-    //   CurrentActiveEquipment.Contains(4) && CurrentActiveEquipment.Contains(7) && CurrentActiveEquipment.Contains(8))
-    //{
-    //    Debug.Log("Torch Lights. No Oxygen at Torch.");
-    //    return;
-    //}
-    //if (CurrentActiveEquipment.Contains(1) && CurrentActiveEquipment.Contains(2) && !CurrentActiveEquipment.Contains(3) &&
-    //   CurrentActiveEquipment.Contains(4) && CurrentActiveEquipment.Contains(7) && CurrentActiveEquipment.Contains(8))
-    //{
-    //    Debug.Log("Torch won't light. Oxygen Leak. Acetylene Regulator Burnout Danger");
-    //    return;
-    //}
-    //if (CurrentActiveEquipment.Contains(1) && CurrentActiveEquipment.Contains(2) && CurrentActiveEquipment.Contains(3) &&
-    //   !CurrentActiveEquipment.Contains(4) && CurrentActiveEquipment.Contains(7) && CurrentActiveEquipment.Contains(8))
-    //{
-    //    Debug.Log("Torch won't light. Oxygen Leak");
-    //    return;
-    //}
-    //if (CurrentActiveEquipment.Contains(1) && CurrentActiveEquipment.Contains(2) && CurrentActiveEquipment.Contains(3) &&
-    //   CurrentActiveEquipment.Contains(4) && CurrentActiveEquipment.Contains(7) && !CurrentActiveEquipment.Contains(8))
-    //{
-    //    Debug.Log("Oxygen and Acetylene Leaking from Torch");
-    //    return;
-    //}
-    //if (CurrentActiveEquipment.Contains(1) && CurrentActiveEquipment.Contains(2) && CurrentActiveEquipment.Contains(3) &&
-    //   CurrentActiveEquipment.Contains(4) && !CurrentActiveEquipment.Contains(7) && !CurrentActiveEquipment.Contains(8))
-    //{
-    //    Debug.Log("Nothing Happend?");
-    //    return;
-    //}
-    //else
-    //{
-    //    return;
-    //}
-
-    //// Creates two lists from ActiveStatesCorrect Dictionary
-    //// List a contains all keys with a value of true
-    //// List b contains integers starting with one and ending at the length of ActiveStatesPlayer list
-    //private void CreateCompareLists()
-    //{
-    //    foreach (var item in ActiveStatesCorrect)
-    //    {
-    //        // Checks if value already exists within ActiveStatesPlayer before adding
-    //        if (item.Value == true && !ActiveStatesPlayer.Contains(item.Key))
-    //        {
-    //            ActiveStatesPlayer.Add(item.Key);
-    //        }
-    //    }
-    //    foreach (var item in ActiveStatesCorrect)
-    //    {
-    //        if (item.Key <= ActiveStatesPlayer.Count)
-    //        {
-    //            ActiveStatesCorrectShort.Add(item.Key);
-    //        }
-    //    }
-    //}
-
-    //private bool CompareLists(List<int> a, List<int> b)
-    //{
-    //    if (a.Count != b.Count)
-    //    {
-    //        Debug.Log("Lists not equal length");
-    //        // a.Clear();
-    //        b.Clear();
-    //        return false;
-    //    }
-    //    for (var i = 0; i < a.Count; i++)
-    //    {
-    //        if (a[i] != b[i])
-    //        {
-    //            // a.Clear();
-    //            b.Clear();
-    //            Debug.Log("Lists not equal");
-    //            WhatsActive();
-    //            return false;
-    //        }
-    //    }
-    //    Debug.Log("Made it through comparison?");
-    //    foreach (var item in a)
-    //    {
-    //        Debug.Log(item + "list a");
-    //    }
-    //    foreach (var item in b)
-    //    {
-    //        Debug.Log(item + "list b");
-    //    }
-    //    // a.Clear();
-    //    b.Clear();
-    //    return true;
-    //}
-
-    //// Determines result of incorrect activation order when all equipment is safe
-    //private void AllSafeConsequences()
-    //{
-
-    //}
-
-    //// Determines result of incorrect activation order when some or all equipment is unsafe
-    //private void UnsafeConsequences()
-    //{
-    //    Debug.Log("Something activated while there is still unsafe equipment");
-    //}
-
-
-    //private void CompareLists(List<int> a, List<int> b, bool oops, bool correct, int id)
-    //{
-    //    if (a.Count != b.Count)
-    //    {
-    //        // Debug.Log("Lists Unequal");
-    //        oops = false; // Doesn't actually change bool?
-    //        correct = true; // Doesn't actually change bool?
-    //        return;
-    //    }
-    //    if (id == oxyReg)
-    //    {
-    //        for (var i = 0; i < a.Count; i++)
-    //        {
-    //            if (a[i] != b[i])
-    //            {
-    //                if (safetyStates[oxyReg] == true)
-    //                {
-    //                    Debug.Log("No Oxy Burnout Yet!");
-    //                    oops = false;
-    //                    correct = true;
-    //                    isOxyPressure = true;
-    //                    return;
-    //                    //Debug.Log(oops);
-    //                    //Debug.Log(correct);
-    //                    //Debug.Log(isOxyPressure);
-    //                }
-    //                if (safetyStates[oxyReg] == false)
-    //                {
-    //                    oops = true;
-    //                    correct = false;
-    //                    OnConsequence?.Invoke(oxyBurnout);
-    //                    return;
-    //                }
-    //                else
-    //                {
-    //                    oops = true;
-    //                    correct = false;
-    //                    OnConsequence?.Invoke(oxyBurnout);
-    //                    return;
-    //                }
-    //            }
-    //        }
-    //    }
-    //    if (id == acetylReg)
-    //    {
-    //        for (var i = 0; i < a.Count; i++)
-    //        {
-    //            if (a[i] != b[i])
-    //            {
-    //                if (safetyStates[acetylReg] == true)
-    //                {
-    //                    Debug.Log("No Acetyl Burnout Yet!");
-    //                    oops = false;
-    //                    correct = true;
-    //                    isAcetylPressure = true;
-    //                    return;
-    //                }
-    //                if (safetyStates[acetylReg] == false)
-    //                {
-    //                    oops = true;
-    //                    correct = false;
-    //                    OnConsequence?.Invoke(acetylBurnout);
-    //                    return;
-    //                }
-    //                oops = true;
-    //                correct = false;
-    //                OnConsequence?.Invoke(acetylBurnout);
-    //                return;
-    //            }
-    //        }
-    //    }
-    //    oops = true;
-    //    correct = false;
-    //    OnConsequence?.Invoke(id);
-    //}
-    #endregion
 }

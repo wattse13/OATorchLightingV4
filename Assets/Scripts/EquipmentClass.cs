@@ -3,13 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Attatched to the EquipmentPrefab GameObject prefab
-// Inherits from MonoBehaviour so that it can be attatched to GameObjects
-// I don't know if that's a good idea or not.
+// Stores data each object needs to function
 public class EquipmentClass : MonoBehaviour 
 {
-    private Vector2 centeredPosition = new Vector2(0, 0);
-    private Vector2 currentPosition;
-
     [SerializeField]
     private string _name;
     [SerializeField]
@@ -38,19 +34,16 @@ public class EquipmentClass : MonoBehaviour
     [SerializeField]
     [TextArea(3, 10)]
     private string _useUnsafeDescr;
-    [SerializeField]
-    private int _initialScale;
     [SerializeField] // Should later be removed so that _iD value is not accidentally changed?
     private int _iD;
     [SerializeField]
     private bool _isSafe;
     [SerializeField]
     private bool _isActive;
+    //[SerializeField]
+    //private int _initialScale;
     // private list _animations;
     // private list _sounds;
-    // private sortingLayer _sortingLayer;
-    //[SerializeField]
-    //private Component _newCollider; // I don't think this is correct
 
     #region Properties
     public string Name
@@ -100,18 +93,6 @@ public class EquipmentClass : MonoBehaviour
             _unsafeImage = value;
         }
     }
-
-    //public Component NewCollider
-    //{
-    //    get
-    //    {
-    //        return _newCollider;
-    //    }
-    //    set
-    //    {
-    //        _newCollider = value;
-    //    }
-    //}
 
     public Vector2 InitialPosition
     {
@@ -229,20 +210,19 @@ public class EquipmentClass : MonoBehaviour
         }
     }
 
-    public int InitialScale
-    {
-        get
-        {
-            return _initialScale;
-        }
-        set
-        {
-            _initialScale = value;
-        }
-    }
+    //public int InitialScale
+    //{
+    //    get
+    //    {
+    //        return _initialScale;
+    //    }
+    //    set
+    //    {
+    //        _initialScale = value;
+    //    }
+    //}
     #endregion
 
-    // This will probably be moved to EquipmentFactory at some point
     private void Awake()
     {
         SetInitialValues();
@@ -266,7 +246,7 @@ public class EquipmentClass : MonoBehaviour
     // Probably has something to do with how my if statements are set up
     public void DisableColliders()
     {
-        if (GetComponent<Collider2D>().enabled == false)
+        if (GetComponent<Collider2D>().enabled == false) // Not sure this check is necessary
         {
             return;
         }
@@ -287,9 +267,10 @@ public class EquipmentClass : MonoBehaviour
         }
     }
 
+    // Re-enables colliders after menu has been closed
     public void EnableColliders()
     {
-        if (GetComponent<Collider2D>().enabled == true)
+        if (GetComponent<Collider2D>().enabled == true) // Not sure this is necessary
         {
             return;
         }
@@ -310,6 +291,7 @@ public class EquipmentClass : MonoBehaviour
         }
     }
 
+    // Sets each object's starting values
     private void SetInitialValues()
     {
         CurrentImage = UnsafeImage;
@@ -319,6 +301,5 @@ public class EquipmentClass : MonoBehaviour
         UseCurrentDescr = UseUnsafeDescr;
         IsSafe = false;
         IsActive = false;
-        // this.gameObject.GetComponent<Transform>().localScale = InitialScale;
     }
 }
