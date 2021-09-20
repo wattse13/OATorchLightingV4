@@ -147,16 +147,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 10913620}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1888691749}
-  m_RootOrder: 2
+  m_Father: {fileID: 412769201}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 60.000008, y: -51.6}
+  m_AnchoredPosition: {x: 0.7000122, y: 0}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &10913622
@@ -1747,6 +1747,81 @@ MonoBehaviour:
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+--- !u!1 &412769200
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 412769201}
+  - component: {fileID: 412769203}
+  - component: {fileID: 412769202}
+  m_Layer: 5
+  m_Name: ImageBackround (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &412769201
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412769200}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 10913621}
+  m_Father: {fileID: 1888691749}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 60, y: -51.6}
+  m_SizeDelta: {x: 79.99971, y: 79.999985}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &412769202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412769200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &412769203
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412769200}
+  m_CullTransparentMesh: 0
 --- !u!1 &456988675
 GameObject:
   m_ObjectHideFlags: 0
@@ -2688,6 +2763,81 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &745493779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 745493780}
+  - component: {fileID: 745493782}
+  - component: {fileID: 745493781}
+  m_Layer: 5
+  m_Name: ImageBackround
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &745493780
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745493779}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1709563765}
+  m_Father: {fileID: 1888691749}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -60, y: -51.6}
+  m_SizeDelta: {x: 79.99971, y: 79.999985}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &745493781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745493779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &745493782
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745493779}
+  m_CullTransparentMesh: 0
 --- !u!1 &769495566
 GameObject:
   m_ObjectHideFlags: 0
@@ -2909,8 +3059,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -40.607086, y: -39.771217}
+  m_AnchoredPosition: {x: 0, y: -2.88}
+  m_SizeDelta: {x: -40.607086, y: -17.34848}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &846463175
 MonoBehaviour:
@@ -7458,25 +7608,34 @@ MonoBehaviour:
   prevButton: {fileID: 0}
   tutorialObject: {fileID: 1618636219}
   tutorialMessages:
-  - This prototype demonstrates how a typical lesson might be played.
-  - To complete this lesson, the player must first replace all the unsafe equipment
-    with safe equipment.
-  - Afterwards, the player must activate the equipment in the correct order.
-  - Clicking on the equipment opens up a context menu.
-  - Clicking on the eye icon opens the inspect menu, where the player has the option
-    to replace unsafe equipment.
-  - Once replaced, the player will also see an updated description which hints at
-    when the equipment should be activated.
-  - Clicking on the hand icon opens the activate menu, where the player has the option
-    of turning the equipment on or off.
-  - This prototype does demonstrate the basics of how we plan to use point-and-click
-    gameplay.
-  - However, it is also very rough. It is still missing animations, sounds, and other
-    functionality.
-  - Key pieces of equipment are missing, like ventilation and other non-sequiturs
-    exist, like the option to activate gas hoses.
-  - This is still very much a work in progress. Future updates will improve the experience.
-  - Enjoy!
+  - This game prototype demonstrates some of our ideas on how a lesson in a course
+    module could function.
+  - 'By entering into different buildings in the College Simulator Base Game, players
+    can access course modules related to their chosen majors. '
+  - In this case, the player has entered the Welding Technologies Building.
+  - Lesson one, of a planned fifteen per module, is this protype here!
+  - Your goal as a player is to light the oxygen acetylene torch without causing
+    an accident.
+  - To accomplish this, it is necessary to first inspect all equipment and replace
+    the unsafe equipment with safe variants.
+  - To inspect an object, first click on the object you wish to inspect. This will
+    bring up a menu with an eye-icon-button and a hand-icon-button. Clicking on the
+    eye-icon-button will open the inspect menu.
+  - After replacing the unsafe equipment with a safe version, the text will update
+    and provide a clue as to when the equipment should be activated.
+  - Once all the equipment is inspected, it is time to start activating equipment.
+  - 'To activate an object, first click on the object you wish to activate. Then
+    click on the hand-icon-button to open the activate menu. '
+  - Using unsafe equipment or activating equipment in the wrong order can cause an
+    accident.
+  - Thankfully, accidents in the virtual world are less dangerous than those in the
+    real world.
+  - 'This prototype is very much a work in progress. A such it still has a lot of
+    rough edges. There are neither sounds nor animations and some of the consequences
+    do not work as desired. '
+  - By filling out a feedback forum after playing, you can help us develop a better
+    game.
+  - Thanks for playing!
 --- !u!4 &1618636221
 Transform:
   m_ObjectHideFlags: 0
@@ -7971,16 +8130,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1709563764}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1888691749}
-  m_RootOrder: 1
+  m_Father: {fileID: 745493780}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -67.5, y: -51.6}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1709563766
@@ -8537,8 +8696,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1192157071}
-  - {fileID: 1709563765}
-  - {fileID: 10913621}
+  - {fileID: 745493780}
+  - {fileID: 412769201}
   - {fileID: 1961967827}
   m_Father: {fileID: 1796759682}
   m_RootOrder: 0
